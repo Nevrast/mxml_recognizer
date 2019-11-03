@@ -1,4 +1,5 @@
-from music21 import stream, meter, key, clef, note, stream
+from music21 import meter, key, clef, note, stream
+
 
 def song():
     """

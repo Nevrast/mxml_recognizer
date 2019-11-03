@@ -4,7 +4,7 @@ from collections import Counter
 import music21
 import numpy as np
 
-from mxml_recognizer.utils.song import song
+from utils.song import song
 
 
 formatter = logging.Formatter(fmt="[%(asctime)s.%(msecs)03d] %(levelname)s: %(message)s",
@@ -40,7 +40,6 @@ class StreamAnalyzer:
         self.notes_by_pitch = None
         self.notes_by_duration = None
         
-        
     def _flatten_stream(self) -> None:
         """
         Makes stream "flat" which gives access to all embedded streams
@@ -58,7 +57,7 @@ class StreamAnalyzer:
                              for note in self.notes_in_stream]
         weighted_pitch_frequencies = [note.pitch.frequency * note.duration.quarterLength
                                       for note in self.notes_in_stream]
-        notes_durations = [note.duration.quarterLength 
+        notes_durations = [note.duration.quarterLength
                            for note in self.notes_in_stream]
         self.avg_pitch_freq = np.average(pitch_frequencies)
         self.weighted_avg_pitch_freq = np.average(weighted_pitch_frequencies)
