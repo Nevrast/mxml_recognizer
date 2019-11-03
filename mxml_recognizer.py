@@ -9,11 +9,17 @@ from mxml_recognizer.utils.song import song
 
 formatter = logging.Formatter(fmt="[%(asctime)s.%(msecs)03d] %(levelname)s: %(message)s",
                               datefmt="%Y-%m-%d %H:%M:%S")
+dict_formatter = logging.Formatter(fmt="\t\t\t\t%(message)s")
 logger = logging.getLogger("mxml_recognizer")
+dict_logger = logging.getLogger("dict")
+dict_logger.setLevel(logging.INFO)
 logger.setLevel(logging.INFO)
+dict_handler = logging.StreamHandler()
+dict_handler.setFormatter(dict_formatter)
 handler = logging.StreamHandler()
 handler.setFormatter(formatter)
 logger.addHandler(handler)
+dict_logger.addHandler(dict_handler)
 
 
 class StreamAnalyzer:
@@ -67,12 +73,17 @@ if __name__ == "__main__":
     stream = song()
     analyzer = StreamAnalyzer(stream=stream)
     analyzer.extract_parameters()
-    logger.info(f"Average pitch frequency: {analyzer.avg_pitch_freq:.4f}[Hz]")
+    logger.info(f"Average pitch frequency: {analyzer.avg_pitch_freq:.4f} Hz")
     logger.info("Weighted average pitch frequency (by note duration): "
-                f"{analyzer.weighted_avg_pitch_freq:.4f}[Hz]")
-    logger.info(f"Pitch standard deviation: {analyzer.pitch_std:.4f}[Hz]")
-    logger.info(f"Average note duration: {analyzer.avg_note_duration:.4f}")
-    logger.info(f"Note duration standard deviation: {analyzer.note_duration_std:.4f}")
-    logger.info(f"Number of notes by pitch: {analyzer.notes_by_pitch}")
-    logger.info(f"Number of notes by duration: {analyzer.notes_by_duration}")
+                f"{analyzer.weighted_avg_pitch_freq:.4f} Hz")
+    logger.info(f"Pitch standard deviation: {analyzer.pitch_std:.4f} Hz")
+    logger.info(f"Average note duration: {analyzer.avg_note_duration:.4f} quarter length")
+    logger.info(f"Note duration standard deviation: {analyzer.note_duration_std:.4f} quarter length")
+    logger.info("Number of notes by pitch:")
+    for pitch, amount in analyzer.notes_by_pitch.items():
+        dict_logger.info(f"Pitch: {pitch:.4f} Hz, amount: {amount}", )
+    logger.info(f"Number of notes by duration:")
+    for duration, amount in analyzer.notes_by_duration.items():
+        dict_logger.info(f"Duration: {duration} quarter length, amount: {amount}")
     stream.show(app="C:\\Program Files\\MuseScore 3\\bin\\MuseScore3.exe")
+    stream.show("midi")
