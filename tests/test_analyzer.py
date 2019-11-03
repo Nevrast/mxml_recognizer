@@ -4,13 +4,36 @@ from mxml_recognizer import StreamAnalyzer
 from utils.song import song
 
 
-def test_check_if_all_parameters_exist():
+@pytest.fixture
+def return_analyzer():
     analyzer = StreamAnalyzer(stream=song())
     analyzer.extract_parameters()
-    assert analyzer.avg_pitch_freq is not None, "Couldn't calculate average pitch frequency."
-    assert analyzer.weighted_avg_pitch_freq is not None, "Couldn't calculate weighted average pitch frequency."
-    assert analyzer.pitch_std is not None, "Couldn't calculate pitch std."
-    assert analyzer.avg_note_duration is not None, "Couldn't calculate average note duration."
-    assert analyzer.note_duration_std is not None, "Couldn't calculate note duration std."
-    assert analyzer.notes_by_pitch is not None, "Couldn't sort notes by pitch."
-    assert analyzer.notes_by_duration is not None, "Couldn't sort notes by duration."
+    return analyzer
+
+
+def test_check_avg_pitch_freq_exist(return_analyzer):
+    assert return_analyzer.avg_pitch_freq is not None, "Couldn't calculate average pitch frequency."
+    
+    
+def test_check_weighted_avg_pitch_freq_exist(return_analyzer):
+    assert return_analyzer.weighted_avg_pitch_freq is not None, "Couldn't calculate weighted average pitch frequency."
+
+
+def test_check_pitch_std_exist(return_analyzer):
+    assert return_analyzer.pitch_std is not None, "Couldn't calculate pitch std."
+
+
+def test_check_avg_note_duration_exist(return_analyzer):
+    assert return_analyzer.avg_note_duration is not None, "Couldn't calculate average note duration."
+
+
+def test_check_note_duration_std_exist(return_analyzer):
+    assert return_analyzer.note_duration_std is not None, "Couldn't calculate note duration std."
+
+
+def test_check_notes_by_pitch_exist(return_analyzer):
+    assert return_analyzer.notes_by_pitch is not None, "Couldn't sort notes by pitch."
+
+
+def test_check_notes_by_duration_exist(return_analyzer):
+    assert return_analyzer.notes_by_duration is not None, "Couldn't sort notes by duration."
