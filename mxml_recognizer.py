@@ -1,6 +1,7 @@
 import logging
 from collections import Counter
 
+import fractions
 import music21
 import numpy as np
 
@@ -58,6 +59,8 @@ class StreamAnalyzer:
         weighted_pitch_frequencies = [note.pitch.frequency * note.duration.quarterLength
                                       for note in self.notes_in_stream]
         notes_durations = [note.duration.quarterLength
+                           if not isinstance(note.duration.quarterLength, fractions.Fraction)
+                           else note.duration.quarterLength.numerator / note.duration.quarterLength.denominator
                            for note in self.notes_in_stream]
         self.avg_pitch_freq = np.average(pitch_frequencies)
         self.weighted_avg_pitch_freq = np.average(weighted_pitch_frequencies)
@@ -69,7 +72,8 @@ class StreamAnalyzer:
         
     
 if __name__ == "__main__":
-    stream = song()
+    # stream = song()
+    stream = music21.converter.parse("mxml_files\\Virgam_virtutis_tuae_duet_Vivaldi_594.mxl")
     analyzer = StreamAnalyzer(stream=stream)
     analyzer.extract_parameters()
     logger.info(f"Average pitch frequency: {analyzer.avg_pitch_freq:.4f} Hz")
@@ -83,6 +87,6 @@ if __name__ == "__main__":
         dict_logger.info(f"Pitch: {pitch:.4f} Hz, amount: {amount}", )
     logger.info(f"Number of notes by duration:")
     for duration, amount in analyzer.notes_by_duration.items():
-        dict_logger.info(f"Duration: {duration} quarter length, amount: {amount}")
-    stream.show(app="C:\\Program Files\\MuseScore 3\\bin\\MuseScore3.exe")
-    stream.show("midi")
+        dict_logger.info(f"Duration: {duration:.4f} quarter length, amount: {amount}")
+    # stream.show(app="C:\\Program Files\\MuseScore 3\\bin\\MuseScore3.exe")
+    # stream.show("midi")
