@@ -72,8 +72,8 @@ class StreamAnalyzer:
         
     
 if __name__ == "__main__":
-    # stream = song()
-    stream = music21.converter.parse("mxml_files\\Virgam_virtutis_tuae_duet_Vivaldi_594.mxl")
+    stream = song()
+    # stream = music21.converter.parse("mxml_files\\Virgam_virtutis_tuae_duet_Vivaldi_594.mxl")
     analyzer = StreamAnalyzer(stream=stream)
     analyzer.extract_parameters()
     logger.info(f"Average pitch frequency: {analyzer.avg_pitch_freq:.4f} Hz")
@@ -88,5 +88,9 @@ if __name__ == "__main__":
     logger.info(f"Number of notes by duration:")
     for duration, amount in analyzer.notes_by_duration.items():
         dict_logger.info(f"Duration: {duration:.4f} quarter length, amount: {amount}")
-    # stream.show(app="C:\\Program Files\\MuseScore 3\\bin\\MuseScore3.exe")
-    # stream.show("midi")
+    stream.show(app="C:\\Program Files\\MuseScore 3\\bin\\MuseScore3.exe")
+    stream.show("midi")
+
+
+# TODO: przedział częstotliwości
+# TODO: klasyfikacja 
