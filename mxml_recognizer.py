@@ -1,4 +1,6 @@
 import logging
+import json
+import os
 from collections import Counter
 
 import fractions
@@ -23,7 +25,7 @@ logger.addHandler(handler)
 dict_logger.addHandler(dict_handler)
 
 
-class StreamAnalyzer:
+class Stream:
     """
     Class that analyses music21.stream objects and extracts information from them
     """
@@ -69,27 +71,67 @@ class StreamAnalyzer:
         self.note_duration_std = np.std(notes_durations)
         self.notes_by_pitch = Counter(pitch_frequencies)
         self.notes_by_duration = Counter(notes_durations)
+        self.name = self.stream.filePath.stem
         
+        
+def save_to_json(streams: list):
+    with open("romantyzm.json", "w") as data_file:
+        data_dict = {}
+        for analyzed_stream in streams:
+            data_dict[analyzed_stream.name] = {
+                "avg_pitch": analyzed_stream.avg_pitch_freq,
+                "weighted_avg_pitch_freq": analyzed_stream.weighted_avg_pitch_freq,
+                "pitch_std": analyzed_stream.pitch_std,
+                "avg_note_duration": analyzed_stream.avg_note_duration,
+                "note_duration_std": analyzed_stream.note_duration_std,
+                "notes_by_pitch": analyzed_stream.notes_by_pitch,
+                "notes_by_duration": analyzed_stream.notes_by_duration
+            }
+        json.dump(data_dict, data_file)
+    
     
 if __name__ == "__main__":
-    stream = song()
+    # stream = song()
     # stream = music21.converter.parse("mxml_files\\Virgam_virtutis_tuae_duet_Vivaldi_594.mxl")
-    analyzer = StreamAnalyzer(stream=stream)
-    analyzer.extract_parameters()
-    logger.info(f"Average pitch frequency: {analyzer.avg_pitch_freq:.4f} Hz")
-    logger.info("Weighted average pitch frequency (by note duration): "
-                f"{analyzer.weighted_avg_pitch_freq:.4f} Hz")
-    logger.info(f"Pitch standard deviation: {analyzer.pitch_std:.4f} Hz")
-    logger.info(f"Average note duration: {analyzer.avg_note_duration:.4f} quarter length")
-    logger.info(f"Note duration standard deviation: {analyzer.note_duration_std:.4f} quarter length")
-    logger.info("Number of notes by pitch:")
-    for pitch, amount in analyzer.notes_by_pitch.items():
-        dict_logger.info(f"Pitch: {pitch:.4f} Hz, amount: {amount}", )
-    logger.info(f"Number of notes by duration:")
-    for duration, amount in analyzer.notes_by_duration.items():
-        dict_logger.info(f"Duration: {duration:.4f} quarter length, amount: {amount}")
-    stream.show(app="C:\\Program Files\\MuseScore 3\\bin\\MuseScore3.exe")
-    stream.show("midi")
+    # stream = music21.converter.parse(r"c:\Users\pgrzy\Studies\sem_7\inzynierka\mxml_recognizer\Deb_Clair.mxl")
+    files = os.listdir("mxml_files\\romantyzm")
+    streams = []
+    for file in files:
+        print(f"Analyzing {file}")
+        try:
+            stream = music21.converter.parse(os.path.join("mxml_files\\romantyzm", file))
+            print(f"Good file {file}")
+        except music21.converter.ConverterException:
+            print(f"Bad file {file}")
+            continue
+        except ZeroDivisionError:
+            print(f"Zero division error for file {file}")
+            continue
+        except Exception as e:
+            print(e)
+            print(f"Another exception on {file}")
+        analyzed = Stream(stream=stream)
+        analyzed.extract_parameters()
+        streams.append(analyzed)
+    
+    # # analyzer = Stream(stream=stream)
+    # analyzer.extract_parameters()
+    # for analyzer in streams:
+    #     logger.info(f"Average pitch frequency: {analyzer.avg_pitch_freq:.4f} Hz")
+    #     logger.info("Weighted average pitch frequency (by note duration): "
+    #                 f"{analyzer.weighted_avg_pitch_freq:.4f} Hz")
+    #     logger.info(f"Pitch standard deviation: {analyzer.pitch_std:.4f} Hz")
+    #     logger.info(f"Average note duration: {analyzer.avg_note_duration:.4f} quarter length")
+    #     logger.info(f"Note duration standard deviation: {analyzer.note_duration_std:.4f} quarter length")
+    #     logger.info("Number of notes by pitch:")
+    #     for pitch, amount in analyzer.notes_by_pitch.items():
+    #         dict_logger.info(f"Pitch: {pitch:.4f} Hz, amount: {amount}", )
+    #     logger.info(f"Number of notes by duration:")
+    #     for duration, amount in analyzer.notes_by_duration.items():
+    #         dict_logger.info(f"Duration: {duration:.4f} quarter length, amount: {amount}")
+    save_to_json(streams)
+    # stream.show(app="C:\\Program Files\\MuseScore 3\\bin\\MuseScore3.exe")
+    # stream.show("midi")
 
 
 # TODO: przedział częstotliwości
