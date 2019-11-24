@@ -13,21 +13,21 @@ else:
     from sklearn.model_selection import train_test_split
     
 
-iris = datasets.load_iris()
-X = iris.data[:, [2, 3]]
-y = iris.target
+# iris = datasets.load_iris()
+# X = iris.data[:, [2, 3]]
+# y = iris.target
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
-sc = StandardScaler()
-sc.fit(X_train)
-X_train_std = sc.transform(X_train)
-X_test_std = sc.transform(X_test)
+# X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+# sc = StandardScaler()
+# sc.fit(X_train)
+# X_train_std = sc.transform(X_train)
+# X_test_std = sc.transform(X_test)
 
-ppn = Perceptron(n_iter_no_change=40, eta0=0.0000001, random_state=0)
-ppn.fit(X_train_std, y_train)
+# ppn = Perceptron(n_iter_no_change=40, eta0=0.0000001, random_state=0)
+# ppn.fit(X_train_std, y_train)
 
-y_pred = ppn.predict(X_test_std)
-print(f"Nieprawidłowo sklasyfikowane próbki: {(y_test != y_pred).sum()}")
+# y_pred = ppn.predict(X_test_std)
+# print(f"Nieprawidłowo sklasyfikowane próbki: {(y_test != y_pred).sum()}")
 
 def versiontuple(v):
     return tuple(map(int, (v.split("."))))
