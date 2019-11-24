@@ -109,4 +109,4 @@ venv.bak/
 # project stuff
 other/
 mxml_files/test/
-data.json
+*.json
