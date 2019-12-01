@@ -1,7 +1,7 @@
 import pytest
 import music21
 
-from mxml_recognizer import StreamAnalyzer
+from mxml_recognizer import Stream
 from utils.song import song
 
 
@@ -9,7 +9,7 @@ from utils.song import song
 def return_analyzer():
     stream = song()
     real_stream = music21.converter.parse("mxml_files\\Virgam_virtutis_tuae_duet_Vivaldi_594.mxl")
-    analyzer = StreamAnalyzer(stream=real_stream)
+    analyzer = Stream(stream=real_stream)
     analyzer.extract_parameters()
     return analyzer
 
