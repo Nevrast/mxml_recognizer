@@ -108,3 +108,5 @@ venv.bak/
 *.code-workspace
 # project stuff
 other/
+mxml_files/test/
+*.json
