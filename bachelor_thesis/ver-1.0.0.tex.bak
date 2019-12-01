@@ -1,0 +1,46 @@
+\documentclass[printmode, eng]{mgr}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{psfrag}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{supertabular}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\newtheorem{theorem}{Twierdzenie}[section]
+
+\title{Projekt i implementacja aplikacji automatycznej klasyfikacji utworów muzycznych z różnych epok}
+\engtitle{Design and implementation of the application for process of automatic classification of classical music from different eras}
+\author{Patryk Grzybała}
+\supervisor{dr inż. Maciej Walczyński, PWr}
+\field{Elektronika (EKA)}
+\specialisation{Inżynieria akustyczna (EIA)}
+
+\linespread{1.3}
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\chapter{Wstęp}
+\qquad W niniejszej pracy inżynierskiej omawiany jest temat automatycznego rozpoznawania utworów muzyki klasycznej z różnych epok wykorzystując do tego algorytmy uczenia maszynowego. Praca omawia wyniki uzyskane podczas tworzenia aplikacji oraz omawia napotkane problemy podczas jej tworzenia. \\
+
+\qquad Uczenie maszynowe zyskuje na coraz większej popularności. Uczenia maszynowe jako dziedzina nauk o sztucznej inteligencji pojawiła się już w latach pięćdziesiątych ubiegłego wieku kiedy Arthur Lee Samuel po raz pierwszy, w roku 1959, użył terminu "uczenie maszynowe". Program Arthura uczył się grać w prostą grę planszową - warcaby. W kolejnych latach dzięki uczeniu maszynowemu odkryto nieznane molekuły związków organicznych, a wyniki tychże badań ukazały się w prasie naukowej i po raz pierwszy nie były to badania wykonane przez człowieka. Obecnie uczenie maszynowe jest wykorzystywane w wielu dziedzinach z ogromnymi sukcesami.
+\section{Zakres pracy}
+\qquad W zakres pracy wchodzą:
+\begin{itemize}
+\item Pozyskanie parametrów opisujących utwór muzyczny z plików MusicXML pozwalających na reprezentowanie zachodniej notacji muzycznej.
+\item Stworzenie bazy danych plików muzycznych z podziałem na różne epoki
+\item Wykorzystanie istniejących algorytmów uczenia maszynowego do jak najlepszej klasyfikacji utworów muzycznych
+\item Stworzenie interfejsu wiersza poleceń pozwalającego na sklasyfikowanie utworu
+\end{itemize}
+\section{Zawartość pracy}
+\end{document}
