@@ -46,3 +46,7 @@
 \contentsline {section}{\numberline {5.3}Tworzenie DataFrame oraz bazy CSV}{23}{section.5.3}% 
 \contentsline {section}{\numberline {5.4}Wybieranie parametr\IeC {\'o}w}{24}{section.5.4}% 
 \contentsline {section}{\numberline {5.5}Trenowanie modelu}{25}{section.5.5}% 
+\contentsline {section}{\numberline {5.6}G\IeC {\l }\IeC {\'o}wna funkcja aplikacji i wiersz polece\IeC {\'n}}{26}{section.5.6}% 
+\contentsline {chapter}{\numberline {6}Wyniki}{27}{chapter.6}% 
+\contentsline {chapter}{\numberline {7}Podsumowanie}{28}{chapter.7}% 
+\contentsline {subsection}{\numberline {7.0.1}Mo\IeC {\.z}liwo\IeC {\'s}ci rozwoju}{28}{subsection.7.0.1}% 
