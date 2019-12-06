@@ -44,26 +44,26 @@
 \tableofcontents
 
 \chapter{Wstęp}
-\tab Celem pracy była próba stworzenia aplikacji pozwalającej na klasyfikację klasycznych utworów muzycznych z wykorzystaniem algorytmów uczenia maszynowego oraz formatu MusicXML.\\
+\tab Celem pracy było stworzenie aplikacji pozwalającej na klasyfikację klasycznych utworów muzycznych z wykorzystaniem algorytmów uczenia maszynowego oraz formatu MusicXML.\\
 \tab W niniejszej pracy inżynierskiej omawiany jest temat automatycznego rozpoznawania utworów muzyki klasycznej z różnych epok wykorzystując do tego algorytmy uczenia maszynowego. Praca omawia wyniki uzyskane podczas tworzenia aplikacji oraz omawia napotkane problemy podczas jej tworzenia. \\
 
 \tab Uczenie maszynowe zyskuje na coraz większej popularności. Uczenia maszynowe jako dziedzina nauk o sztucznej inteligencji pojawiła się już w latach pięćdziesiątych ubiegłego wieku kiedy Arthur Lee Samuel po raz pierwszy, w roku 1959, użył terminu "uczenie maszynowe". Program Arthura uczył się grać w prostą grę planszową - warcaby. W kolejnych latach dzięki uczeniu maszynowemu odkryto nieznane molekuły związków organicznych, a wyniki tychże badań ukazały się w prasie naukowej i po raz pierwszy nie były to badania wykonane przez człowieka. Obecnie uczenie maszynowe jest wykorzystywane w wielu dziedzinach z ogromnymi sukcesami.
 \section{Zakres pracy}
 \tab W zakres pracy wchodzą:
 \begin{itemize}
-\item Pozyskanie parametrów opisujących utwór muzyczny z plików MusicXML pozwalających na reprezentowanie zachodniej notacji muzycznej.
-\item Stworzenie bazy danych plików muzycznych z podziałem na różne epoki.
-\item Wykorzystanie istniejących algorytmów uczenia maszynowego do jak najlepszej klasyfikacji utworów muzycznych.
-\item Stworzenie interfejsu wiersza poleceń pozwalającego na sklasyfikowanie utworu.
+\item pozyskanie parametrów opisujących utwór muzyczny z plików MusicXML pozwalających na reprezentowanie zachodniej notacji muzycznej,
+\item stworzenie bazy danych plików muzycznych z podziałem na różne epoki,
+\item wykorzystanie istniejących algorytmów uczenia maszynowego do jak najlepszej klasyfikacji utworów muzycznych,
+\item stworzenie interfejsu wiersza poleceń pozwalającego na sklasyfikowanie utworu.
 \end{itemize}
 \section{Zawartość pracy}
 \tab Rozdział 2 ("Muzyka klasyczna") opisuje pokrótce epoki w muzyce oraz skupia się na zapisie nutowym.\\
 \tab Rozdział 3 ("Baza plików muzycznych MusicXML") mówi o tworzeniu bazy plików muzycznych wykorzystywanych do późniejszej nauki klasyfikatorów uczenia maszynowego oraz o formacie MusicXML.\\ 
-\tab Rozdział 4 ("placeholder") pokazuje czym jest Python'owa biblioteka music21 oraz sposób ekstrakcji parametrów z plików MusicXML.\\ 
-\tab Rozdział 5 ("placeholder") zawiera podstawowe informacje o uczeniu maszynowym, jego rodzajach, wyborze algorytmu klasyfikującego oraz przetwarzaniu danych uczących.\\ 
-\tab Rodział 6 ("placeholder") omawia uzyskane wyniki klasyfikacji, wnioski, które nasunęły się podczas pisania pracy oraz możliwości rozwoju czy usprawnienia aplikacji. \\ 
+\tab Rozdział 4 ("Uczenie maszynowe") zawiera podstawowe informacje o uczeniu maszynowym, jego rodzajach, niektórych algorytmu klasyfikujących oraz wstępnym przetwarzaniu danych.\\ 
+\tab Rozdział 5 ("Implementacja aplikacji") przedstawia środowisko w jakim została napisana aplikacja, omawia w skrócie bibliotekę \textit{music21} oraz opisuje jak została stworzona aplikacja.\\ 
+\tab Rodział 6 ("Podsumowanie") omawia uzyskane wyniki klasyfikacji, wnioski, które nasunęły się podczas pisania pracy oraz możliwości rozwoju czy usprawnienia aplikacji. \\ 
 \chapter{Muzyka klasyczna}
-\tab Muzyka towarzyszyła nam od czasów prehistorycznych, grano podczas ceremonii religijnych oraz do zabawy. Najstarszy wiernie odtworzony utwór muzyczny pochodzi z państwa Hurytów, jest to "Hymn do Nikkal" i datowany jest na rok 1400 p.n.e., natomiast najstarszy kompletny utwór muzyczny, który zachował się do czasów współczesnych datowany jest na XI wiek.
+\tab Muzyka towarzyszyła nam od czasów prehistorycznych, grano podczas ceremonii religijnych oraz do zabawy. Najstarszy wiernie odtworzony utwór muzyczny pochodzi\linebreak z państwa Hurytów, jest to "Hymn do Nikkal" i datowany jest na rok 1400 p.n.e., natomiast najstarszy kompletny utwór muzyczny, który zachował się do czasów współczesnych datowany jest na XI wiek.
 \section{Epoki w muzyce klasycznej}
 \subsection{Średniowiecze}
 \tab Muzyka w średniowiecznej Europie nie była czymś pospolitym. Muzykę uważano za naukę, a także większość autorów nie podpisywała się pod swoimi dziełami, miała na to wpływ filozofia małości człowieka wobec Boga. W hierarchii społecznej teoretycy muzyczni zajmowali znacznie większą pozycję niż kompozytorzy, ci ostatni byli tylko rzemieślnikami. \\
@@ -78,9 +78,9 @@
 \tab Na przełomie XVII i XVIII wieku muzyka stawała się bardziej monumentalna. Utwory były coraz dłuższe, wieloczęściowe, były wykonywane przez większą ilość muzyków. Muzyka instrumentalna bardzo się rozwijała, w tym okresie powstały między innymi sonaty oraz koncerty solowe jako gatunki. Warto również wymienić tu nazwiska takich twórców jak Antonio Vivaldi, Jerzy Fryderyk Händel oraz Jan Sebastian Bach, którzy są ikonami muzyki z tamtego okresu.\\
 \subsection{Klasycyzm}
 \tab Za początek klasycyzmu uznaje się śmierć Jana Sebastiana Bacha w roku 1750. Do najbardziej znanych kompozytorów z tego okresu należeli Józef Haydn, Wolfgang Amadeusz Mozart, a także Ludwig van Beethoven oraz Franz Schubert, których twórczość ciężko jednak przypisać jednoznacznie do okresu klasycyzmu, gdyż są pionierami również epoki romantycznej.\\
-\tab W epoce klasycyzmu udoskonalano gatunki i formy, takie jak sonaty, symfonie, koncerty czy kwartety. Jest to epoka bardzo różnorodna posiadająca wiele szkół i stylów. Początek tej epoki to przede wszystkim styl \textit{galant}, muzyka w tym stylu miała być przyjemna, prosta ale też elegancka, a jej głównym zadaniem było wprowadzenie słuchacza w dobry nastrój. Kompozytorzy rezygnowali z polifonii, która była wszechobecna w stylu barokowym. 
+\tab W epoce klasycyzmu udoskonalano gatunki i formy, takie jak sonaty, symfonie, koncerty czy kwartety. Jest to epoka bardzo różnorodna posiadająca wiele szkół i stylów. Początek tej epoki to przede wszystkim styl \textit{galant}, muzyka w tym stylu miała być przyjemna, prosta ale też elegancka, a jej głównym zadaniem było wprowadzenie słuchacza\linebreak w dobry nastrój. Kompozytorzy rezygnowali z polifonii, która była wszechobecna w stylu barokowym. 
 \subsection{Romantyzm}
-\tab XIX wiek był rozkwitem nurtu romantycznego w Europie, rozpoczynając od nazwiska Ludwiga van Beethovena, w którego muzyka ukształtowała późniejszych twórców romantycznych. XIX był też początkiem twórczości wirtuozowskiej - \textit{brillant}. Głównymi inspiracjami muzyki tego okresu był folklor, egzotyka, natura, filozofia, literatura oraz inne sztuki. Odmienił się status społeczny kompozytora i wykonawcy, a także muzyki w pojmowaniu społeczeństwa. Publiczne koncerty stawały się coraz bardziej popularne.\\
+\tab XIX wiek był rozkwitem nurtu romantycznego w Europie, rozpoczynając od nazwiska Ludwiga van Beethovena, w którego muzyka ukształtowała późniejszych twórców romantycznych. XIX był też początkiem twórczości wirtuozowskiej - \textit{brillant}. Głównymi inspiracjami muzyki tego okresu był folklor, egzotyka, natura, filozofia, literatura oraz inne sztuki. Odmienił się status społeczny kompozytora i wykonawcy, a także muzyki\linebreak w pojmowaniu społeczeństwa. Publiczne koncerty stawały się coraz bardziej popularne.\\
 \tab Romantyczni twórcy starali się tworzyć swoje unikatowe style, odchodzono od szeroko przyjętych schematów form muzycznych i zasad porządkujących przebieg dzieła muzycznego. Gatunki muzyczne nie były tak dystynktywne. Teksty utworów romantycznych często były poświęcone tematom miłości oraz samotności, a inspiracją do nich była twórczość ówczesnych poetów.
 \subsection{XX wiek}
 \tab Muzyka XX wieku stanowi bunt wobec muzyki z wcześniejszych okresów. Charakteryzuje się poszukiwaniem nowości, inności oraz łamaniem zasad. Poprzednie epoki odznaczały się tzw. \textit{tonalnością funkcyjną} co oznacza, że panowała w nich swego rodzaju hierarchia, zdarzenia muzyczne były skorelowane z tym co działo się wcześniej, a także pozwalały przewidywać co stanie się później. Uznano jednak, należy szukać nowych zasad. Jednak cechą, która łączy muzykę wieku XX z muzyką lat poprzednich były uprawiane formy i gatunki muzyczne takie jak symfonie czy opery. Muzyka tego okresu jest bardzo zróżnicowana.
@@ -107,28 +107,28 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \begin{minipage}{0.31\textwidth}
 \centering
 \includegraphics[width=3cm]{G}
-\caption{Klucz G (wiolinowy)}
+\caption{Klucz G.}
 \end{minipage}
 \begin{minipage}{0.31\textwidth}
 \centering
 \includegraphics[width=3cm]{F}
-\caption{Klucz F (basowy)}
+\caption{Klucz F.}
 \end{minipage}
 \begin{minipage}{0.31\textwidth}
 \centering
 \includegraphics[width=3cm]{C}
-\caption{Klucz C (tenorowy)}
+\caption{Klucz C.}
 \end{minipage}
 \end{figure}
 
-\tab Klucz G wskazuje położenie dźwięku $g^{1}$, klucz F wskazuje położenie dźwięku $f$, a klucz C położenie dźwięku $c^{1}$ na pięciolinii. Klucze ułatwiają zapis dźwięków na odpowiednie partie, na przykład nuty dla instrumentów nisko brzmiących takich jak kontrabas zapisuje się z użyciem klucza basowego, a klucza wiolinowego używa się do zapisu nut dla wysoko brzmiących skrzypiec. Inaczej pięciolinia nie wystarczyłaby do zapisu wszystkich dźwięków, nawet z liniami dodatkowymi.
+\tab Klucz G wskazuje położenie dźwięku $g^{1}$, klucz F wskazuje położenie dźwięku\linebreak$f$, a klucz C położenie dźwięku $c^{1}$ na pięciolinii. Klucze ułatwiają zapis dźwięków na odpowiednie partie, na przykład nuty dla instrumentów nisko brzmiących takich jak kontrabas zapisuje się z użyciem klucza basowego, a klucza wiolinowego używa się do zapisu nut dla wysoko brzmiących skrzypiec. Inaczej pięciolinia nie wystarczyłaby do zapisu wszystkich dźwięków, nawet z liniami dodatkowymi.
 
 \subsubsection{Krzyżyk}
-\tab Krzyżyk podnosi dźwięk o pół tonu, czyli sprawia, że dźwięk jest podniesiony o $\sqrt[12]{2}$ raza.
+\tab Krzyżyk podnosi dźwięk o pół tonu, czyli sprawia, że dźwięk jest podniesiony\\o $\sqrt[12]{2}$ raza.
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=3.6cm]{krzyzyk.png}
-\caption{Symbol krzyżyka przy nucie}
+\caption{Symbol krzyżyka przy nucie.}
 \end{figure}
 
 \subsubsection{Bemol}
@@ -136,16 +136,16 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=3.6cm]{bemol.png}
-\caption{Symbol bemolu przy nucie}
+\caption{Symbol bemolu przy nucie.}
 \end{figure}
 
 \subsubsection{Kasownik}
-\tab Kasownik, jak sama nazwa wskazuje, kasuje znaczenie wyżej wymienionych znaków chromatycznych. Postawienie np. bemolu przed nutą G oznacza, że wszystkie nuty G w danym takcie będą obniżone o pół tonu staną się nutami ges, z kolei postawienie kasownika przed nutą ges kasuje znaczenie bemolu i dźwięk zostaje podniesiony o pół tonu w górę. Ilustruje to rysunek 2.6.
+\tab Kasownik, jak sama nazwa wskazuje, kasuje znaczenie wyżej wymienionych znaków chromatycznych. Postawienie np. bemolu przed nutą G oznacza, że wszystkie nuty\linebreak G w danym takcie będą obniżone o pół tonu staną się nutami ges, z kolei postawienie kasownika przed nutą ges kasuje znaczenie bemolu i dźwięk zostaje podniesiony o pół tonu w górę. Ilustruje to rysunek 2.6.
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=6cm]{kasownik_poj}
-\caption{Zmiana tonu dzwięku ges przez kasownik}
+\caption{Zmiana tonu dzwięku ges przez kasownik.}
 \end{figure}
 
 \tab Znaki chromatyczne można jednak stawiać także za kluczem, obowiązują wtedy w całym utworze lub są tymczasowo usuwane przez kasownik.
@@ -153,7 +153,7 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=6cm]{kasownik_cal}
-\caption{Zmiana tonu dźwięku bes przez kasownik}
+\caption{Zmiana tonu dźwięku bes przez kasownik.}
 \end{figure}
 
 \subsection{Wartości nut}
@@ -162,7 +162,7 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \begin{figure}[H]
 \centering
 \includegraphics[width=6cm]{wartosci_nut}
-\caption{Symbole nut przedstawiające różne wartości nut, kolejno od lewej: cała nuta, półnuta, ćwierćnuta, ósemka, szesnastka, trzydziestodwójka, sześćdziesięcioczwórka}
+\caption{Symbole nut przedstawiające różne wartości nut, kolejno od lewej: cała nuta, półnuta, ćwierćnuta, ósemka, szesnastka, trzydziestodwójka, sześćdziesięcioczwórka.}
 \end{figure}
 \tab Wartości rytmiczne nut mogą być zmieniane. Podobnie jak zwiększana jest wysokość dźwięku przez krzyżyki tak długość nuty może być wydłużona przez łuk lub kropkę. 
 \subsubsection{Łuk}
@@ -171,7 +171,7 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=5.4cm]{luk}
-\caption{Łączenie dwóch półnut do całej nuty przez łuk}
+\caption{Łączenie dwóch półnut do całej nuty przez łuk.}
 \end{figure}
 
 \subsubsection{Kropka}
@@ -180,11 +180,11 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=5.4cm]{kropka}
-\caption{Wydłużenie wartości całej nuty przez kropkę}
+\caption{Wydłużenie wartości całej nuty przez kropkę.}
 \end{figure}
 
 \chapter{Baza plików muzycznych MusicXML}
-\tab W ramach niniejszej pracy musiała zostać stworzona baza plików muzycznych utworów z różnych epok. Pliki muzyczne zgodnie z założeniami były w formacie MusicXML i zostały pobrane ze stron:
+\tab W ramach niniejszej pracy musiała zostać stworzona baza plików muzycznych utworów z różnych epok. Pliki muzyczne zgodnie z założeniami były w formacie MusicXML\linebreak i zostały pobrane ze stron:
 \begin{itemize}
 \item \url{https://www.cpdl.org/wiki/}
 \item \url{https://musescore.com/sheetmusic}
@@ -196,7 +196,7 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=5.4cm]{xml_example}
-\caption{Przykład formatu .mxl odtworzonego za pomocą programu MuseScore 3}
+\caption{Przykład formatu .mxl odtworzonego za pomocą programu MuseScore 3.}
 \end{figure}
 \begin{lstlisting}
 <?xml version="1.0" encoding="UTF-8"?>
@@ -255,7 +255,7 @@ Te linijki mówią o tym, że używamy MusicXML, jednocześnie specyfikujemy lok
 \begin{lstlisting}
 <score-partwise version="3.1">
 \end{lstlisting}
-To jest główny \textit{korzeń} (ang. root) dokumentu, element <score-partwise> składa się z części, a każda z części składa się z taktów. Atrybut elementu \textit{version} definiuje, którą wersję MusicXML używamy.
+To jest główny \textit{korzeń} (ang. \textit{root}) dokumentu, element <score-partwise> składa się z części, a każda z części składa się\linebreak z taktów. Atrybut elementu \textit{version} definiuje, którą wersję MusicXML używamy.
 
 \begin{lstlisting}
 <part-list>
@@ -309,7 +309,7 @@ Powyższy element oznacza metrum. Górny element \textit{<beats>} oznacza liczb�
   <line>2</line>
 </clef>
 \end{lstlisting}
-\textit{<clef>} definiuje klucz, MusicXML pozwala na użycie kluczy, które już nie są dziś w użyciu. W powyższym kodzie element \textit{<sign>} oznacza typ klucza, a \textit{<line>} linijkę na której się znajduje. G2 to klucz wiolinowy.
+\textit{<clef>} definiuje klucz, MusicXML pozwala na użycie kluczy, które już nie są dziś\linebreak w użyciu. W powyższym kodzie element \textit{<sign>} oznacza typ klucza, a \textit{<line>} linijkę na której się znajduje. G2 to klucz wiolinowy.
 
 \begin{lstlisting}
 </attributes>
@@ -388,20 +388,20 @@ Ostatecznie zamykamy wszystkie elementy i nasz utwór składający się z jednej
 \subsection{Uczenie nienadzorowane}
 \tab W przeciwieństwie do uczenia nadzorowanego w uczeniu nienadzorowanym nie wiemy do jakiej klasy należą dane uczące. Dzięki takiemu podejściu jesteśmy w stanie poznać strukturę przetwarzanych danych i sklasyfikować je ze względu na podobieństwo. 
 \subsection{Uczenie przez wzmacnianie}
-\tab Uczenie przez wzmacnianie ma na celu stworzenie systemu, który poprawia własną skuteczność na podstawie interakcji ze środowiskiem. System jest nagradzany lub karany w zależności od poprawności wyniku końcowego, w ten sposób dostarczana jest do regulatora informacja zwrotna na podstawie której do modelu wprowadzane są poprawki.
+\tab Uczenie przez wzmacnianie ma na celu stworzenie systemu, który poprawia własną skuteczność na podstawie interakcji ze środowiskiem. System jest nagradzany lub karany\linebreak w zależności od poprawności wyniku końcowego, w ten sposób dostarczana jest do regulatora informacja zwrotna na podstawie której do modelu wprowadzane są poprawki.
 \section{Algorytmy klasyfikujące}
 \subsection{Perceptron}
 \tab Algorytm klasyfikujący perceptronu działa podobnie do komórki nerwowej, algorytm przemnaża wagi z wartościami wejściowymi i na podstawie wyników określa czy należy zaktualizować wagi czy wynik był poprawny. Wykorzystywana jest do tego funkcja skoku jednostkowego, zwana funkcją skokową Heaviside'a. Algorytm można opisać dwoma krokami:
 \begin{enumerate}
-\item Wprowadź wagi o wartościach zerowych lub niewielkich, losowych wartościach
-\item Dla każdej próbki uczącej:
+\item wprowadź wagi o wartościach zerowych lub niewielkich, losowych wartościach,
+\item dla każdej próbki uczącej:
 \begin{itemize}
-\item Oblicz wartość wyjściową
-\item Zaktualizuj wagi
+\item oblicz wartość wyjściową,
+\item zaktualizuj wagi.
 \end{itemize}
 \end{enumerate}
 
-\tab Algorytm kończy swoje działanie, gdy klasy są rozdzielone liniowo. Jeżeli klas nie można rozdzielić liniowo możemy określić maksymalną liczbę epok aktualizacji wag i próg tolerancji nieprawidłowych klasyfikacji. 
+\tab Algorytm kończy swoje działanie, gdy klasy są rozdzielone liniowo. Jeżeli klas nie można rozdzielić liniowo możemy określić maksymalną liczbę epok aktualizacji wag\linebreak i próg tolerancji nieprawidłowych klasyfikacji. 
 
 \subsection{Regresja logistyczna}
 \tab Algorytm regresji logistycznej przypomina algorytmy perceptronu jednak tutaj funkcją aktywacji jest funkcja sigmoidalna, której wynik jest interpretowany jako prawdopodobieństwo, że dana próbka przynależy do danej klasy, a ostateczny wynik jest przekształcany za pomocą funkcji skoku jednostkowego.
@@ -411,7 +411,7 @@ Ostatecznie zamykamy wszystkie elementy i nasz utwór składający się z jednej
 \begin{figure}[H]
 \centering
 \includegraphics{svm}
-\caption{Margines w algorytmie maszyny wektorów nośnych}
+\caption{Margines w algorytmie maszyny wektorów nośnych.}
 \end{figure}
 \section{Przetwarzanie danych}
 \tab W tym dziale przyjrzymy się sposobom przetwarzania danych wejściowych tak, aby umożliwić skuteczniejsze rozpoznawanie.
@@ -444,11 +444,11 @@ indeks & niebieski & czerwony & zielony \\
 
 \end{tabular}
 \end{table}
-Z tabeli 4.1 możemy odczytać, że ubranie o indeksie 0 ma kolor czerwony, indeksie 1 zielony, a indeksie 2 niebieski.
+Z tabeli 4.1 możemy odczytać, że ubranie o indeksie 0 ma kolor czerwony, indeksie\linebreak 1 zielony, a indeksie 2 niebieski.
 \subsection{Kodowanie etykiet klas}
 \tab Zazwyczaj dane wejściowe posiadają etykiety klas zakodowane w postaci nieliczbowej, np. w przypadku tej pracy są to nazwy epok z których pochodzi dany utwór. Dobrym zwyczajem jest przekształcenie nazw etykiet na wartości liczbowe. To jakie wartości przyjmą nie ma znaczenia dla algorytmu, muszą być po prostu unikatowe dla danej etykiety. Zazwyczaj etykiety są numerowane od zera. 
 \subsection{Dane uczące i dane testowe}
-\tab Nasz zbiór danych należy podzielić na dane uczące, czyli te które będą kształtowały model i testowe, czyli przeciw którym będzie model sprawdzany. Rezygnujemy wtedy z części informacji, więc nie możemy umieszczać zbyt wielu próbek w zbiorze testowym. Nie ma dokładnej proporcji podziału danych i zależy ona od wielkości zbioru. Najczęściej są to stosunki 60:40, 70:30, 80:20 lub w przypadku wużych zbiorów są spotykane wartości takie jak 90:10 lub 99:1.
+\tab Nasz zbiór danych należy podzielić na dane uczące, czyli te które będą kształtowały model i testowe, czyli przeciw którym będzie model sprawdzany. Rezygnujemy wtedy\linebreak z części informacji, więc nie możemy umieszczać zbyt wielu próbek w zbiorze testowym. Nie ma dokładnej proporcji podziału danych i zależy ona od wielkości zbioru. Najczęściej są to stosunki 60:40, 70:30, 80:20 lub w przypadku wużych zbiorów są spotykane wartości takie jak 90:10 lub 99:1.
 \subsection{Skalowanie cech}
 \tab Skalowanie cech polega na sprowadzeniu wszystkich cech do jednej skali co przyspiesza działanie algorytmów uczenia maszynowego. Najpopularniejsze dwie metody skalowania cech to normalizacja i standaryzacja. Aby przeprowadzić normalizację wystarczy przeskalować każdą kolumnę cech wobec wartości krańcowych ze wzoru:\\
 \begin{equation}
@@ -464,33 +464,33 @@ x^{(1)}_{std} = \dfrac{x^{(i)} - \mu_x}{\sigma_x}
 \section{Środowisko}
 \tab Aplikacja została napisana przy użycia języka programowania Python w wersji 3.6 oraz zewnętrznych bibliotek do tego języka. Poza standardowymi bibliotekami języka Python użyto:
 \begin{itemize}
-\item NumPy - biblioteka umożliwiająca szybkie operacje na macierzach wielowymiarowych
-\item Pandas - dostarcza zoptymalizowane i łatwe w obsłudze struktury danych, które są kompatybilne z narzędziami biblioteki NumPy
-\item scikit-learn - biblioteka umożliwiająca klasyfikację obiektów na podstawie uczenia maszynowego, jest kompatybilna z narzędziami dostarczanymi przez NumPy oraz Pandas
-\item music21 - zestaw narzędzi do analizy różnych formatów muzycznych, między innymi MIDI oraz MusicXML, pozwala również na pisanie własnych utworów w języku Python
+\item \textit{NumPy} - biblioteka umożliwiająca szybkie operacje na macierzach wielowymiarowych,
+\item \textit{Pandas} - dostarcza zoptymalizowane i łatwe w obsłudze struktury danych, które są kompatybilne z narzędziami biblioteki \textit{NumPy},
+\item \textit{scikit-learn} - biblioteka umożliwiająca klasyfikację obiektów na podstawie uczenia maszynowego, jest kompatybilna z narzędziami dostarczanymi przez \textit{NumPy} oraz \textit{Pandas},
+\item \textit{music21} - zestaw narzędzi do analizy różnych formatów muzycznych, między innymi MIDI oraz MusicXML, pozwala również na pisanie własnych utworów w języku Python.
 \end{itemize}
 \section{Biblioteka music21}
-\tab Dzięki prostemu interfejsowi biblioteki music21 w bardzo łatwy sposób można odczytywać informacje z plików MusicXML.
+\tab Dzięki prostemu interfejsowi biblioteki \textit{music21} w bardzo łatwy sposób można odczytywać informacje z plików MusicXML.
 \begin{lstlisting}
 import music21
 
 stream = music21.converter.parse("C:\\sciezka\\do\\pliku.mxl")
 \end{lstlisting}
-\tab Powyższy kod tworzy obiekt typu Stream zawierający wszystkie informacje przechowywane w pliku MusicXML, a także udostępnia metody pozwalające na działanie na tym obiekcie. 
+\tab Powyższy kod tworzy obiekt typu \textit{Stream} zawierający wszystkie informacje przechowywane w pliku MusicXML, a także udostępnia metody pozwalające na działanie na tym obiekcie. 
 \subsection{Parametryzacja plików}
 \tab Następujące parametry zostały pozyskane z plików muzycznych i były używane do stworzenia danych wejściowych dla algorytmów uczenia maszynowego:
 \begin{itemize}
-\item Średnia wysokość dźwięku
-\item Średnia wysokość dźwięku ważona czasem trwania dźwięku
-\item Odchylenie standardowe wysokości dźwięku
-\item Średnia długość dźwięku
-\item Odchylenie standardowe długości dźwięku
-\item Znormalizowana liczba nut ze względu na wysokość dźwięku
-\item Znormalizowana liczba nut ze względu na czas trwania dźwięku
+\item średnia wysokość dźwięku,
+\item średnia wysokość dźwięku ważona czasem trwania dźwięku,
+\item odchylenie standardowe wysokości dźwięku,
+\item średnia długość dźwięku,
+\item odchylenie standardowe długości dźwięku,
+\item znormalizowana liczba nut ze względu na wysokość dźwięku,
+\item znormalizowana liczba nut ze względu na czas trwania dźwięku.
 \end{itemize}
 \subsection{Implementacja parametryzacji plików}
-\tab Została napisana klasa StreamAnalyzer, która przyjmuje dwa argumenty podczas tworzenia obiektu - stream oraz era. Argument stream to obiekt Stream, czyli Python'owa reprezentacja pliku muzycznego, a era oznacza epokę z której ten plik pochodzi (argument wymagany do tworzenia bazy danych). Klasa StreamAnalyzer zawiera pola, z wyżej wymienionymi parametrami, które są pozyskiwane bezpośrednio z obiektu Stream przy pomocy metody klasy StreamAnalyzer - \textit{extract\_parameters()}, która znajduje się poniżej.
-\tab Lista zawierająca wszystkie nuty w utworze tworzona jest przez prywatną metodę klasy StreamAnalyzer \textit{\_flatten\_stream()}, która łączy wszystkie części utworu w jeden i zbiera wszystkie nuty w jedną listę, która dalej jest przetwarzana.
+\tab Została napisana klasa \textit{StreamAnalyzer}, która przyjmuje dwa argumenty podczas tworzenia obiektu - \textit{stream} oraz \textit{era}. Argument \textit{stream} to obiekt typu \textit{music21.Stream}, czyli Python'owa reprezentacja pliku muzycznego, a \textit{era} oznacza epokę z której ten plik pochodzi (argument wymagany do tworzenia bazy danych). Klasa \textit{StreamAnalyzer} zawiera pola, z wyżej wymienionymi parametrami, które są pozyskiwane bezpośrednio z obiektu \textit{Stream} przy pomocy metody klasy \textit{StreamAnalyzer} - \textit{extract\_parameters()}, która znajduje się poniżej.
+\tab Lista zawierająca wszystkie nuty w utworze tworzona jest przez prywatną metodę klasy \textit{StreamAnalyzer} \textit{\_flatten\_stream()}, która łączy wszystkie części utworu w jeden\linebreak i zbiera wszystkie nuty w jedną listę, która dalej jest przetwarzana.
 \begin{lstlisting}
 def extract_parameters(self) -> None:
     """
@@ -518,13 +518,13 @@ def extract_parameters(self) -> None:
     self.notes_by_duration = Counter(notes_durations)
     self.name = self.stream.filePath.stem
 \end{lstlisting}
-\tab Metoda nie przyjmuje żadnych argumentów. Na początku tej metody tworzone są listy wysokości dźwięków w utworze, ważonych wysokości dźwięków w utworze, gdzie wagą jest długość dźwięku oraz lista długości dźwięków w utworze. W kolejnym kroku obliczane i przypisywane do pól obiektu są parametry. Obliczenia wykonywane są przy pomocy biblioteki NumPy oraz obiektu Counter należącego do biblioteki standardowej collections. Obiekt Counter pozwala w prosty sposób policzyć liczbę występowania danej wartości w liście. Na koniec do obiektu przypisywana jest też nazwa pliku.\\
+\tab Metoda nie przyjmuje żadnych argumentów. Na początku tej metody tworzone są listy wysokości dźwięków w utworze, ważonych wysokości dźwięków w utworze, gdzie wagą jest długość dźwięku oraz lista długości dźwięków w utworze. W kolejnym kroku obliczane i przypisywane do pól obiektu są parametry. Obliczenia wykonywane są przy pomocy biblioteki \textit{NumPy} oraz obiektu \textit{Counter} należącego do biblioteki standardowej \textit{collections}. Obiekt \textit{Counter} pozwala w prosty sposób policzyć liczbę występowania danej wartości w liście. Na koniec do obiektu przypisywana jest też nazwa pliku.\\
 \tab W ten sposób tworzone są obiekty zawierające już tylko przydatne informacje. 
 \section{Tworzenie DataFrame oraz bazy CSV}
-\tab Kolejnym etapem jest przetworzenie listy obiektów typu StreamAnalyzer zawierających informacje o utworach muzycznych w jedną pełną bazę danych. Służy do tego klasa znajdująca się w pliku \textit{data\_parser.py} o tej samej nazwie DataParser. Metody klasy DataParser pozwalają na stworzenie jednego dużego słownika zawierającego informacje o utworach, przekształcenie go tak, aby miał tylko twa wymiary, ponieważ parametry "Znormalizowana liczba nut ze względu na wysokość dźwięku" oraz "Znormalizowana liczba nut ze względu na czas trwania dźwięku" wciąż są przechowywane w formie słowników. Przekształcenie pozwala na stworzenie nowych cech na podstawie każdego klucza z owych słowników - zamiast dwóch parametrów tworzy się ich wiele w zależności od tego ile rodzajów nut było w omawianych dwóch parametrach. Robi to metoda klasy DataParser o nazwie \textit{flatten\_dictionaries()}, która jednocześnie normalizuje liczbę nut względem wszystkich nut w utworze, tak żeby długość utworu nie miała większego wpływu na wyniki.\\
-\tab Metoda \textit{flatten\_dictionaries()} zwraca słownik, z którego tworzony jest obiekt typu DataFrame biblioteki pandas za pomocą metody \textit{create\_data\_frame()}. Obiekt DataFrame może być zapisany (i równie prosto odczytany) bezpośrednio do pliku CSV (ang. \textit{comma seperated values}, czyli formatu pozwalającego do przechowywania uporządkowanych danych w plikach tekstowych. Tak przygotowane dane można przekazać do algorytmów uczenia maszynowego.
+\tab Kolejnym etapem jest przetworzenie listy obiektów typu \textit{StreamAnalyzer} zawierających informacje o utworach muzycznych w jedną pełną bazę danych. Służy do tego klasa znajdująca się w pliku \textit{data\_parser.py} o tej samej nazwie \textit{DataParser}. Metody klasy \textit{DataParser} pozwalają na stworzenie jednego dużego słownika zawierającego informacje o utworach, przekształcenie go tak, aby miał tylko twa wymiary, ponieważ parametry "Znormalizowana liczba nut ze względu na wysokość dźwięku" oraz "Znormalizowana liczba nut ze względu na czas trwania dźwięku" wciąż są przechowywane w formie słowników. Przekształcenie pozwala na stworzenie nowych cech na podstawie każdego klucza z owych słowników - zamiast dwóch parametrów tworzy się ich wiele w zależności od tego ile rodzajów nut było w omawianych dwóch parametrach. Robi to metoda klasy \textit{DataParser} o nazwie \textit{flatten\_dictionaries()}, która jednocześnie normalizuje liczbę nut względem wszystkich nut w utworze, tak żeby długość utworu nie miała większego wpływu na wyniki.\\
+\tab Metoda \textit{flatten\_dictionaries()} zwraca słownik, z którego tworzony jest obiekt typu \textit{DataFrame} biblioteki \textit{pandas} za pomocą metody \textit{create\_data\_frame()}. Obiekt \textit{DataFrame} może być zapisany (i równie prosto odczytany) bezpośrednio do pliku CSV (ang. \textit{comma seperated values}, czyli formatu pozwalającego do przechowywania uporządkowanych danych w plikach tekstowych. Tak przygotowane dane można przekazać do algorytmów uczenia maszynowego.
 \section{Wybieranie parametrów}
-\tab Jako, że parametrów dla każdego utworu na tym etapie jest bardzo - około 110 dużo należy wybrać te najbardziej znaczące. Z pomocą przychodzi biblioteka scikit-learn posiadająca klasę RandomForestClassifier w module ensemble. Klasa ta dzięki metodzie \textit{fit()} pozwala na estymowanie ważności wag zbioru cech dzięki temu zwiększając celność modelu i kontrolę nadmiernego dopasowania. Na rysunku 5.1 przedstawiono fragment listingu konsoli przedstawiającego 25 pierwszych cech i ich wagi estymowane przez klasę RandomForestClassifier.\\
+\tab Jako, że parametrów dla każdego utworu na tym etapie jest bardzo dużo - około 110, należy zatem wybrać te najbardziej znaczące. Z pomocą przychodzi biblioteka \textit{scikit-learn} posiadająca klasę \textit{RandomForestClassifier} w module \textit{ensemble}. Klasa ta dzięki metodzie \textit{fit()} pozwala na estymowanie ważności wag zbioru cech dzięki temu zwiększając celność modelu i kontrolę nadmiernego dopasowania. Na rysunku 5.1 przedstawiono fragment listingu konsoli przedstawiającego 25 pierwszych cech i ich wagi estymowane przez klasę \textit{RandomForestClassifier}.\\
 \begin{figure}[!htb]
 \centering
 \includegraphics{wagi}
@@ -532,21 +532,21 @@ def extract_parameters(self) -> None:
 \end{figure}
 \tab We wszystkich powtórzeniach na pierwszym miejscu zawsze znajdywały się cechy: 
 \begin{itemize}
-\item 2.0 - ilość nut o długości dwóch pełnych nut
-\item pitch\_std - odchylenie standardowe wysokości dźwięku
-\item avg\_note\_duration - średnia długość dźwięku
-\item 4.0 - ilość nut o długości czterech pełnych nut
+\item 2.0 - ilość nut o długości dwóch pełnych nut,
+\item pitch\_std - odchylenie standardowe wysokości dźwięku,
+\item avg\_note\_duration - średnia długość dźwięku,
+\item 4.0 - ilość nut o długości czterech pełnych nut.
 \end{itemize}
 \tab Na podstawie tych cech ręcznie została przetworzona baza danych i stworzony nowy plik CSV posiadający tylko te cechy. Baza ta została później użyta do wytrenowania ostatecznego modelu.\newpage
 
 \section{Trenowanie modelu}
-\tab Posiadając przygotowane dane w prosty sposób można było przygotować model. Biblioteka scikit-learn w prosty sposób pozwala podzielić zestaw danych na testowy i treningowy przy pomocy funkcji \textit{train\_test\_split()}.
+\tab Posiadając przygotowane dane w prosty sposób można było przygotować model. Biblioteka \textit{scikit-learn} w prosty sposób pozwala podzielić zestaw danych na testowy\linebreak i treningowy przy pomocy funkcji \textit{train\_test\_split()}.
 \begin{lstlisting}
-params_train, params_test, labels_train, labels_test = train_test_split(
-        params, labels, test_size=test_size, random_state=random_state
-    )
+params_train, params_test, labels_train, labels_test = \
+    train_test_split(params, labels, test_size=test_size,
+                     random_state=random_state)
 \end{lstlisting}
-\tab Argument test\_size odpowiada za stosunek podziału, domyślnie 60:40, gdzie 60\% próbek to próbki testowe. Stosunek ten można zmieniać podczas trenowania modelu używając odpowiedniego argumentu wiersza poleceń, o którym będzie w dalszej części pracy. W kolejnym kroku należy przeprowadzić standaryzację danych testowych i uczących zgodnie ze wzorem 4.2 za co odpowiada klasa StandardScaler biblioteki scikit-learn.
+\tab Argument test\_size odpowiada za stosunek podziału, domyślnie 60:40, gdzie 60\% próbek to próbki testowe. Stosunek ten można zmieniać podczas trenowania modelu używając odpowiedniego argumentu wiersza poleceń, o którym będzie w dalszej części pracy. W kolejnym kroku należy przeprowadzić standaryzację danych testowych i uczących zgodnie ze wzorem 4.2 za co odpowiada klasa \textit{StandardScaler} biblioteki \textit{scikit-learn}.
 \begin{lstlisting}
 sc = StandardScaler()
 sc.fit(params)
@@ -556,18 +556,56 @@ params_test_std = sc.transform(params_test)
 \tab Zmienne \textit{params\_train\_std} oraz \textit{params\_test\_std} są posiadają ustandaryzowane wartości wykorzystane do uczenia modelu.
 
 \begin{lstlisting}
-svc = SVC(kernel=kernel, random_state=random_state, gamma=gamma, C=C)
+svc = SVC(kernel=kernel, random_state=random_state, gamma=gamma,
+  	   C=C)
 svc.fit(X=params_train_std, y=labels_train)
     
 predictions = svc.predict(params_test_std)
 \end{lstlisting}
-\tab Powyższy listing przedstawia inicjalizację obiektu SVC biblioteki scikit-learn używającą algorytmu maszyny wektorów nośnych. Funkcja \textit{fit()} jako argumenty przyjmuje ustandaryzowane wartości stworzone w poprzednim kroku oraz odpowiadające im etykiety danych oraz trenuje model. Zmienna \textit{predictions} to lista przewidzianych przez model etykiet na podstawie danych \textit{params\_test\_std} użytych jako argument w metodzie \textit{predict}. Dzięki porównaniu jej ze zmienną \textit{labels\_test} możemy sprawdzić skuteczność modelu dla danych testowych. Na koniec drukujemy do konsoli wyniki trenowania, ile było próbek testowych, ile próbek sklasyfikowano niepoprawnie oraz jakie są dokładności modelu dla danych testowych i uczących.
-\section{Główna funkcja aplikacji i wiersz poleceń}
-WIP
-\chapter{Wyniki}
-WIP
+\tab Powyższy listing przedstawia inicjalizację obiektu SVC biblioteki \textit{scikit-learn} używającą algorytmu maszyny wektorów nośnych. Funkcja \textit{fit()} jako argumenty przyjmuje ustandaryzowane wartości stworzone w poprzednim kroku oraz odpowiadające im etykiety danych oraz trenuje model. Zmienna \textit{predictions} to lista przewidzianych przez model etykiet na podstawie danych \textit{params\_test\_std} użytych jako argument w metodzie \textit{predict}. Dzięki porównaniu jej ze zmienną \textit{labels\_test} możemy sprawdzić skuteczność modelu dla danych testowych. Na koniec drukujemy do konsoli wyniki trenowania, ile było próbek testowych, ile próbek sklasyfikowano niepoprawnie oraz jakie są dokładności modelu dla danych testowych i uczących.
+\section{Interfejs wiersza poleceń}
+\tab Aplikacja opiera się o interfejs wiersza poleceń (ang. \textit{command line interface}) i udostępnia następujące komendy:
+\begin{itemize}
+\item --csv-path [PATH] - jedyny wymagany argument, wskazuje ścieżkę do pliku CSV zawierającego przekształconą bazę danych,
+\item --mxml-files [PATH] - ścieżka do folderu z plikami MusicXML, tworzy nową bazę danych z plików MusicXML w miejscu wskazanym przez argument --csv-path,
+\item --train - nie przyjmuje żadnych argumentów, jeśli jest podany na nowo tworzony jest model,
+\item --test-size [NUMBER] - ułamek grupy testowej z bazy danych, domyślnie 0.4,
+\item --kernel [STRING] - wybór jądra modelu, domyślnie "rbf",
+\item --gamma [NUMBER] - obszar graniczny strefy Gauss'a, tym większa gamma tym mniej sztywne są granice decyzyjne modelu, domyślnie 0.1, 
+\item -C [NUMBER] - odwrotność parametru regularyzacji, zapobiega zbyt dużej wartości wag cech, domyślnie 1.0, 
+\item --random-state [STRING or INTEGER] - generator liczb pseudolosowych, jeśli podana jest liczba stała, użyta jest jako ziarno generatora liczb losowych, domyślnie użyty jest generator biblioteki \textit{NumPy},
+\item --save-model [PATH] - ścieżka do zapisu modelu, model powinien być zapisany\linebreak z rozszerzeniem \textit{.joblib},
+\item --classify [PATH] - ścieżka do zapisanego modelu, jeśli został podany argument --train użyty zostanie aktualny model\linebreak z pamięci,
+\item -h, --help - pomoc, wyświetla informacje o dostępnych argumentach.
+\end{itemize}
+\subsection{Przykłady użycia}
+\begin{lstlisting}
+py mxml_recognizer.py \
+	--csv-path .\bazy_danych\nowa_baza.csv \
+	--mxml-files .\pliki_musicxml 
+\end{lstlisting}
+Powyższa komenda tworzy nową bazę danych w pliku \textit{nowa\_baza.csv} na podstawie plików znajdujących się w folderze \textit{pliki\_musicxml}.
+\begin{lstlisting}
+py mxml_recognizer.py \
+	--csv-path .\bazy_danych\nowa_baza.csv \
+	--train \
+	--save-model .\modele\nowy_model.joblib
+\end{lstlisting}
+Trenuje model na podstawie istniejącej bazy danych 
+\textit{nowa\_baza.csv} oraz zapisuje go do pliku \textit{nowy\_model.joblib}.
+
+\begin{lstlisting}
+py mxml_recognizer.py \
+	--csv-path .\bazy_danych\testowa_baza.csv \
+	--classify .\modele\nowy_model.joblib
+\end{lstlisting}
+Klasyfikuje przetworzone na format CSV pliki z pliku \textit{testowa\_baza.csv}. 
 \chapter{Podsumowanie}
+\tab Celem pracy inżynierskiej było wykonanie aplikacji do automatycznej klasyfikacji utworów muzycznych ze względu na przynależność do danej epoki, cel został wykonany jednak wyniki działania aplikacji nie są idealne i jest na pewno sporo miejsca na poprawę.
+\section{Wyniki}
 WIP
-\subsection{Możliwości rozwoju}
+\section{Wnioski}
+WIP
+\section{Możliwości rozwoju}
 BRAK
 \end{document}

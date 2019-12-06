@@ -15,10 +15,10 @@ def cmd_parser():
     parser.add_argument("--kernel", action="store", required=False, default="rbf",
                         help="Jądro modelu.")
     parser.add_argument("--gamma", action="store", required=False, default=0.1,
-                        help="Obszar graniczny strefy Gaussa, tym mniejsza gamma tym "
+                        help="Obszar graniczny strefy Gaussa, tym większa gamma tym "
                         "mniej sztywne są granice decyzyjne.")
     parser.add_argument("-C", action="store", required=False, default=1.0,
-                        help="Odwrotność parametru regularyzacji, zapobiegającej zbyt dużej "
+                        help="Odwrotność parametru regularyzacji, zapobiegającej zbyt "
                         "dużej wartości wag cech.")
     parser.add_argument("--random-state", action="store", required=False, default=None,
                         help="Generator losowości, domyślnie generator biblioteki Numpy")

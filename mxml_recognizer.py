@@ -48,4 +48,4 @@ if __name__ == "__main__":
             test_model = model
         else:
             test_model = load(args.classify)
-        classify(model=test_model, data=args.csv_path)
+        classify(model=test_model, data=args.classify)
