@@ -10,8 +10,8 @@
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
-
-
+\usepackage{setspace}
+\renewcommand{\baselinestretch}{1.5} 
 \usepackage{supertabular}
 \usepackage{array}
 \usepackage{tabularx}
@@ -24,7 +24,15 @@
     linkcolor=black,
     filecolor=black,      
     urlcolor=black,
+    citecolor=black
 }
+\usepackage{afterpage}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
 \newtheorem{theorem}{Twierdzenie}[section]
 
 \title{Projekt i implementacja aplikacji automatycznej klasyfikacji utworów muzycznych z różnych epok}
@@ -40,18 +48,22 @@
 \linespread{1.3}
 \begin{document}
 \maketitle
-
+\blankpage
 \tableofcontents
+{\setstretch{1.2}
+\listoffigures
 
+\listoftables
+}
 \chapter{Wstęp}
 \tab Celem pracy było stworzenie aplikacji pozwalającej na klasyfikację klasycznych utworów muzycznych z wykorzystaniem algorytmów uczenia maszynowego oraz formatu\linebreak MusicXML.\\
 \tab W niniejszej pracy inżynierskiej omawiany jest temat automatycznego rozpoznawania utworów muzyki klasycznej z różnych epok wykorzystując do tego algorytmy uczenia maszynowego. Praca omawia wyniki uzyskane podczas tworzenia aplikacji oraz omawia napotkane problemy podczas jej tworzenia. \\
 
-\tab Uczenie maszynowe zyskuje na coraz większej popularności. Uczenia maszynowe jako dziedzina nauk o sztucznej inteligencji pojawiła się już w latach pięćdziesiątych ubiegłego wieku kiedy Arthur Lee Samuel po raz pierwszy, w roku 1959, użył terminu "uczenie maszynowe". Program Arthura uczył się grać w prostą grę planszową - warcaby. W kolejnych latach dzięki uczeniu maszynowemu odkryto nieznane molekuły związków organicznych, a wyniki tychże badań ukazały się w prasie naukowej i po raz pierwszy nie były to badania wykonane przez człowieka. Obecnie uczenie maszynowe jest wykorzystywane w wielu dziedzinach z ogromnymi sukcesami.
+\tab Uczenie maszynowe zyskuje na coraz większej popularności. Uczenia maszynowe jako dziedzina nauk o sztucznej inteligencji pojawiła się już w latach pięćdziesiątych ubiegłego wieku kiedy Arthur Lee Samuel po raz pierwszy, w roku 1959, użył terminu "uczenie maszynowe". Program Arthura uczył się grać w prostą grę planszową - warcaby. \cite{mlearn}\linebreak W kolejnych latach dzięki uczeniu maszynowemu odkryto nieznane molekuły związków organicznych, a wyniki tychże badań ukazały się w prasie naukowej i po raz pierwszy nie były to badania wykonane przez człowieka. Obecnie uczenie maszynowe jest wykorzystywane w wielu dziedzinach z ogromnymi sukcesami.
 \section{Zakres pracy}
 \tab W zakres pracy wchodzą:
 \begin{itemize}
-\item pozyskanie parametrów opisujących utwór muzyczny z plików MusicXML pozwalających na reprezentowanie zachodniej notacji muzycznej,
+\item pozyskanie parametrów opisujących utwór muzyczny z plików MusicXML \cite{mxml} pozwalających na reprezentowanie zachodniej notacji muzycznej,
 \item stworzenie bazy danych plików muzycznych z podziałem na różne epoki,
 \item wykorzystanie istniejących algorytmów uczenia maszynowego do jak najlepszej klasyfikacji utworów muzycznych,
 \item stworzenie interfejsu wiersza poleceń pozwalającego na sklasyfikowanie utworu.
@@ -63,35 +75,35 @@
 \tab Rozdział 5 ("Implementacja aplikacji") przedstawia środowisko w jakim została napisana aplikacja, omawia w skrócie bibliotekę \textit{music21} oraz opisuje jak została stworzona aplikacja.\\ 
 \tab Rodział 6 ("Podsumowanie") omawia uzyskane wyniki klasyfikacji, wnioski, które nasunęły się podczas pisania pracy oraz możliwości rozwoju czy usprawnienia aplikacji. \\ 
 \chapter{Muzyka klasyczna}
-\tab Muzyka towarzyszyła nam od czasów prehistorycznych, grano podczas ceremonii religijnych oraz do zabawy. Najstarszy wiernie odtworzony utwór muzyczny pochodzi\linebreak z państwa Hurytów, jest to "Hymn do Nikkal" i datowany jest na rok 1400 p.n.e., natomiast najstarszy kompletny utwór muzyczny, który zachował się do czasów współczesnych datowany jest na XI wiek.
+\tab Muzyka towarzyszyła nam od czasów prehistorycznych, grano podczas ceremonii religijnych oraz do zabawy. Najstarszy wiernie odtworzony utwór muzyczny pochodzi\linebreak z państwa Hurytów, jest to "Hymn do Nikkal" i datowany jest na rok 1400 p.n.e., natomiast najstarszy kompletny utwór muzyczny, który zachował się do czasów współczesnych datowany jest na XI wiek. \cite{oldest}
 \section{Epoki w muzyce klasycznej}
 \subsection{Średniowiecze}
-\tab Muzyka w średniowiecznej Europie nie była czymś pospolitym. Muzykę uważano za naukę, a także większość autorów nie podpisywała się pod swoimi dziełami, miała na to wpływ filozofia małości człowieka wobec Boga. W hierarchii społecznej teoretycy muzyczni zajmowali znacznie większą pozycję niż kompozytorzy, ci ostatni byli tylko rzemieślnikami. \\
+\tab Muzyka w średniowiecznej Europie nie była czymś pospolitym. Muzykę uważano za naukę, a także większość autorów nie podpisywała się pod swoimi dziełami, miała na to wpływ filozofia małości człowieka wobec Boga. W hierarchii społecznej teoretycy muzyczni zajmowali znacznie większą pozycję niż kompozytorzy, ci ostatni byli tylko rzemieślnikami. \cite{sred} \\
 \tab W końcówce IX wieku zaczęła pojawiać się notacja muzyczna służąca do zapisu chorału gregoriańskiego zwana notacją neumatyczną. Znaki w tej notacji odpowiadały pojedynczym dźwiękom albo ich grupom. Umieszczano je nad tekstem śpiewanym. Miało to określić przybliżony kształt melodii. \\
-\tab Guido z Arezzo wprowadził do tej notacji dwie równoległe linie i dwie litery C - przy wyższej linii oraz F przy niższej linii. Litery te oznaczały wysokość dźwięku zapisanych na danych liniach. W późniejszych latach, pod koniec XI wieku, dodano dwie, a następnie jeszcze jedną linię. Tak narodziła się znana nam ówcześnie pięciolinia.
+\tab Guido z Arezzo wprowadził do tej notacji dwie równoległe linie i dwie litery C - przy wyższej linii oraz F przy niższej linii. Litery te oznaczały wysokość dźwięku zapisanych na danych liniach. W późniejszych latach, pod koniec XI wieku, dodano dwie, a następnie jeszcze jedną linię. Tak narodziła się znana nam ówcześnie pięciolinia. \cite{neum}
 \subsection{Renesans}
 \tab Za początek renesansu w muzyce uznaje się rok 1400, kiedy zaczęto wykorzystywać nieznane w średniowieczu techniki kompozytorskie. Muzyka tego okresu była przeznaczona głównie dla bogatego mieszczaństwa oraz na dwory władców. Zaczynają się pojawiać utwory świeckie: pieśni miłosne, madrygały i utwory okolicznościowe. Muzyka zmieniła swój status z nauki na sztukę. \\
 \tab Wśród muzyki sakralnej dominowały msze i motety, natomiast w muzyce świeckiej dominował chanson oraz madrygał. Główne instrumenty utożsamiane z renesansem to puzon, lutnia, viola da gamba oraz organy. \\
-\tab Dodatkowym czynnikiem rozwijającym muzykę renesansową było wynalezienie maszyny drukarskiej co pozwoliło na proste kopiowanie nut i rozpowszechnienie muzyki na większą skalę.
+\tab Dodatkowym czynnikiem rozwijającym muzykę renesansową było wynalezienie maszyny drukarskiej co pozwoliło na proste kopiowanie nut i rozpowszechnienie muzyki na większą skalę. \cite{ren}
 \subsection{Barok}
 \tab W roku 1600 nastąpił przełom w muzyce, gdy we Florencji wystawiono pierwsze zachowane dzieło operowe "Dramma per musica" Jacopo Periego. Przyczyniło się to do powstania nowego gatunku - opery. Nowa epoka w muzyce miała odróżniać się od  poprzedniej przede wszystkim jej ekspresywnością i indywidualnym charakterem. Muzyka baroku miała za zadanie wyrażanie emocji, a także pobudzanie w słuchaczu uczuć zwanych afektami.\\
-\tab Na przełomie XVII i XVIII wieku muzyka stawała się bardziej monumentalna. Utwory były coraz dłuższe, wieloczęściowe, były wykonywane przez większą ilość muzyków. Muzyka instrumentalna bardzo się rozwijała, w tym okresie powstały między innymi sonaty oraz koncerty solowe jako gatunki. Warto również wymienić tu nazwiska takich twórców jak Antonio Vivaldi, Jerzy Fryderyk Händel oraz Jan Sebastian Bach, którzy są ikonami muzyki z tamtego okresu.\\
+\tab Na przełomie XVII i XVIII wieku muzyka stawała się bardziej monumentalna. Utwory były coraz dłuższe, wieloczęściowe, były wykonywane przez większą ilość muzyków. Muzyka instrumentalna bardzo się rozwijała, w tym okresie powstały między innymi sonaty oraz koncerty solowe jako gatunki. Warto również wymienić tu nazwiska takich twórców jak Antonio Vivaldi, Jerzy Fryderyk Händel oraz Jan Sebastian Bach, którzy są ikonami muzyki z tamtego okresu. \cite{bar}\\
 \subsection{Klasycyzm}
 \tab Za początek klasycyzmu uznaje się śmierć Jana Sebastiana Bacha w roku 1750. Do najbardziej znanych kompozytorów z tego okresu należeli Józef Haydn, Wolfgang Amadeusz Mozart, a także Ludwig van Beethoven oraz Franz Schubert, których twórczość ciężko jednak przypisać jednoznacznie do okresu klasycyzmu, gdyż są pionierami również epoki romantycznej.\\
-\tab W epoce klasycyzmu udoskonalano gatunki i formy, takie jak sonaty, symfonie, koncerty czy kwartety. Jest to epoka bardzo różnorodna posiadająca wiele szkół i stylów. Początek tej epoki to przede wszystkim styl \textit{galant}, muzyka w tym stylu miała być przyjemna, prosta ale też elegancka, a jej głównym zadaniem było wprowadzenie słuchacza\linebreak w dobry nastrój. Kompozytorzy rezygnowali z polifonii, która była wszechobecna w stylu barokowym. 
+\tab W epoce klasycyzmu udoskonalano gatunki i formy, takie jak sonaty, symfonie, koncerty czy kwartety. Jest to epoka bardzo różnorodna posiadająca wiele szkół i stylów. Początek tej epoki to przede wszystkim styl \textit{galant}, muzyka w tym stylu miała być przyjemna, prosta ale też elegancka, a jej głównym zadaniem było wprowadzenie słuchacza\linebreak w dobry nastrój. Kompozytorzy rezygnowali z polifonii, która była wszechobecna w stylu barokowym. \cite{clas} 
 \subsection{Romantyzm}
 \tab XIX wiek był rozkwitem nurtu romantycznego w Europie, rozpoczynając od nazwiska Ludwiga van Beethovena, w którego muzyka ukształtowała późniejszych twórców romantycznych. XIX był też początkiem twórczości wirtuozowskiej - \textit{brillant}. Głównymi inspiracjami muzyki tego okresu był folklor, egzotyka, natura, filozofia, literatura oraz inne sztuki. Odmienił się status społeczny kompozytora i wykonawcy, a także muzyki\linebreak w pojmowaniu społeczeństwa. Publiczne koncerty stawały się coraz bardziej popularne.\\
-\tab Romantyczni twórcy starali się tworzyć swoje unikatowe style, odchodzono od szeroko przyjętych schematów form muzycznych i zasad porządkujących przebieg dzieła muzycznego. Gatunki muzyczne nie były tak dystynktywne. Teksty utworów romantycznych często były poświęcone tematom miłości oraz samotności, a inspiracją do nich była twórczość ówczesnych poetów.
+\tab Romantyczni twórcy starali się tworzyć swoje unikatowe style, odchodzono od szeroko przyjętych schematów form muzycznych i zasad porządkujących przebieg dzieła muzycznego. Gatunki muzyczne nie były tak dystynktywne. Teksty utworów romantycznych często były poświęcone tematom miłości oraz samotności, a inspiracją do nich była twórczość ówczesnych poetów. \cite{rom}
 \subsection{XX wiek}
-\tab Muzyka XX wieku stanowi bunt wobec muzyki z wcześniejszych okresów. Charakteryzuje się poszukiwaniem nowości, inności oraz łamaniem zasad. Poprzednie epoki odznaczały się tzw. \textit{tonalnością funkcyjną} co oznacza, że panowała w nich swego rodzaju hierarchia, zdarzenia muzyczne były skorelowane z tym co działo się wcześniej, a także pozwalały przewidywać co stanie się później. Uznano jednak, należy szukać nowych zasad. Jednak cechą, która łączy muzykę wieku XX z muzyką lat poprzednich były uprawiane formy i gatunki muzyczne takie jak symfonie czy opery. Muzyka tego okresu jest bardzo zróżnicowana.
+\tab Muzyka XX wieku stanowi bunt wobec muzyki z wcześniejszych okresów. Charakteryzuje się poszukiwaniem nowości, inności oraz łamaniem zasad. Poprzednie epoki odznaczały się tzw. \textit{tonalnością funkcyjną} co oznacza, że panowała w nich swego rodzaju hierarchia, zdarzenia muzyczne były skorelowane z tym co działo się wcześniej, a także pozwalały przewidywać co stanie się później. Uznano jednak, należy szukać nowych zasad. Jednak cechą, która łączy muzykę wieku XX z muzyką lat poprzednich były uprawiane formy i gatunki muzyczne takie jak symfonie czy opery. Muzyka tego okresu jest bardzo zróżnicowana. \cite{xx}
 \section{Zapis nutowy}
 \tab W tej pracy pliki wykorzystane do klasyfikacji zawierają między innymi informacje o wysokości dźwięku i wartości rytmiczne nut, są to dwie główne informacje wykorzystane do parametryzacji utworów muzycznych.
 \subsection{Wysokość dźwięku}
-\tab Wysokość dźwięku danej nuty określa jej częstotliwość tonu podstawowego. Na partyturze wysokość dźwięku danej nuty określa jej położenie na pięciolinii, klucz oraz znaki chromatyczne, czyli krzyżyki, bemole i kasowniki.\\ W tabeli 2.1 przedstawiono ilość drgań dla dźwięków w oktawie razkreślnej.
+\tab Wysokość dźwięku danej nuty określa jej częstotliwość tonu podstawowego. Na partyturze wysokość dźwięku danej nuty określa jej położenie na pięciolinii, klucz oraz znaki chromatyczne, czyli krzyżyki, bemole i kasowniki.\\ W tabeli 2.1 przedstawiono ilość drgań dla dźwięków w oktawie razkreślnej. \cite{wys}
 
 \begin{table}[!htb]
 \centering
-\caption{Dzwięki i ich częstotliwości w oktawie razkreślnej}
+\caption{Dzwięki i ich częstotliwości w oktawie razkreślnej \cite{tab}}
 \begin{tabular}{|l|c|c|c|c|c|c|c|c|}
 \hline
 Dźwięk & $c^{1}$ & $d^{1}$ & $e^{1}$ & $f^{1}$ & $g^{1}$ & $a^{1}$ & $h^{1}$ & $c^{2}$  \\
@@ -121,10 +133,10 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \end{minipage}
 \end{figure}
 
-\tab Klucz G wskazuje położenie dźwięku $g^{1}$, klucz F wskazuje położenie dźwięku\linebreak$f$, a klucz C położenie dźwięku $c^{1}$ na pięciolinii. Klucze ułatwiają zapis dźwięków na odpowiednie partie, na przykład nuty dla instrumentów nisko brzmiących takich jak kontrabas zapisuje się z użyciem klucza basowego, a klucza wiolinowego używa się do zapisu nut dla wysoko brzmiących skrzypiec. Inaczej pięciolinia nie wystarczyłaby do zapisu wszystkich dźwięków, nawet z liniami dodatkowymi.
+\tab Klucz G wskazuje położenie dźwięku $g^{1}$, klucz F wskazuje położenie dźwięku\linebreak$f$, a klucz C położenie dźwięku $c^{1}$ na pięciolinii. Klucze ułatwiają zapis dźwięków na odpowiednie partie, na przykład nuty dla instrumentów nisko brzmiących takich jak kontrabas zapisuje się z użyciem klucza basowego, a klucza wiolinowego używa się do zapisu nut dla wysoko brzmiących skrzypiec. Inaczej pięciolinia nie wystarczyłaby do zapisu wszystkich dźwięków, nawet z liniami dodatkowymi. \cite{key}
 
 \subsubsection{Krzyżyk}
-\tab Krzyżyk podnosi dźwięk o pół tonu, czyli sprawia, że dźwięk jest podniesiony\\o $\sqrt[12]{2}$ raza.
+\tab Krzyżyk podnosi dźwięk o pół tonu, czyli sprawia, że dźwięk jest podniesiony\\o $\sqrt[12]{2}$ raza. \cite{slow}
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=3.6cm]{krzyzyk.png}
@@ -132,7 +144,7 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \end{figure}
 
 \subsubsection{Bemol}
-\tab Bemol jest przeciwieństwem krzyżyka i obniża dźwięk o pół tonu.
+\tab Bemol jest przeciwieństwem krzyżyka i obniża dźwięk o pół tonu. \cite{slow}
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=3.6cm]{bemol.png}
@@ -140,7 +152,7 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \end{figure}
 
 \subsubsection{Kasownik}
-\tab Kasownik, jak sama nazwa wskazuje, kasuje znaczenie wyżej wymienionych znaków chromatycznych. Postawienie np. bemolu przed nutą G oznacza, że wszystkie nuty\linebreak G w danym takcie będą obniżone o pół tonu staną się nutami ges, z kolei postawienie kasownika przed nutą ges kasuje znaczenie bemolu i dźwięk zostaje podniesiony o pół tonu w górę. Ilustruje to rysunek 2.6.
+\tab Kasownik, jak sama nazwa wskazuje, kasuje znaczenie wyżej wymienionych znaków chromatycznych. Postawienie np. bemolu przed nutą G oznacza, że wszystkie nuty\linebreak G w danym takcie będą obniżone o pół tonu staną się nutami ges, z kolei postawienie kasownika przed nutą ges kasuje znaczenie bemolu i dźwięk zostaje podniesiony o pół tonu w górę. \cite{slow} Ilustruje to rysunek 2.6.
 
 \begin{figure}[!htb]
 \centering
@@ -151,7 +163,7 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \tab Znaki chromatyczne można jednak stawiać także za kluczem, obowiązują wtedy w całym utworze lub są tymczasowo usuwane przez kasownik.
 
 \subsection{Wartości nut}
-\tab Wartości rytmiczne nut określają długość ich trwania. Podstawową jednostką jest \textit{cała nuta}, według której określone są pozostałe nuty. Cała nuta nie ma absolutnie zdefiniowanego czasu trwania, jest on definiowany przez \textit{tempo} utworu. Cała nuta trwa pełny takt w metrum $\rfrac{2}{2}$ czy $\rfrac{4}{4}$. Cała nuta zawiera dwie półnuty, cztery ćwierćnuty, osiem ósemek itd.
+\tab Wartości rytmiczne nut określają długość ich trwania. Podstawową jednostką jest \textit{cała nuta}, według której określone są pozostałe nuty. Cała nuta nie ma absolutnie zdefiniowanego czasu trwania, jest on definiowany przez \textit{tempo} utworu. Cała nuta trwa pełny takt w metrum $\rfrac{2}{2}$ czy $\rfrac{4}{4}$. Cała nuta zawiera dwie półnuty, cztery ćwierćnuty, osiem ósemek itd. \cite{wart}
 
 \begin{figure}[H]
 \centering
@@ -160,7 +172,7 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \end{figure}
 \tab Wartości rytmiczne nut mogą być zmieniane. Podobnie jak zwiększana jest wysokość dźwięku przez krzyżyki tak długość nuty może być wydłużona przez łuk lub kropkę. 
 \subsubsection{Łuk}
-\tab Łuk łączy dwie nuty tylko i wyłącznie o tej samej wysokości, ich wartości się sumują. Łuki łączące nuty o różnych wysokościach mają inne znaczenie. Na rysunku 2.9 zaprezentowano połączenie dwóch półnut w jedną całą nutę. Dźwięki w obu taktach brzmią tak samo.
+\tab Łuk łączy dwie nuty tylko i wyłącznie o tej samej wysokości, ich wartości się sumują. Łuki łączące nuty o różnych wysokościach mają inne znaczenie. Na rysunku 2.9 zaprezentowano połączenie dwóch półnut w jedną całą nutę. Dźwięki w obu taktach brzmią tak samo.\cite{wart}
 
 \begin{figure}[!htb]
 \centering
@@ -169,7 +181,7 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \end{figure}
 
 \subsubsection{Kropka}
-\tab Kropka po prawej stronie nuty wydłuża jej wartość o połowę wartości nuty przy której została napisana, to znaczy, że cała nuta z kropką trwa tyle co cała nuta i półnuta, półnuta z kropką trwa tyle co półnuta i ćwierćnuta itd. Zależność ta została zaprezentowana na rysunku 2.10. Kropka pisana nad nutą ma inne znaczenie.
+\tab Kropka po prawej stronie nuty wydłuża jej wartość o połowę wartości nuty przy której została napisana, to znaczy, że cała nuta z kropką trwa tyle co cała nuta i półnuta, półnuta z kropką trwa tyle co półnuta i ćwierćnuta itd. Zależność ta została zaprezentowana na rysunku 2.10. Kropka pisana nad nutą ma inne znaczenie.\cite{wart}
 
 \begin{figure}[!htb]
 \centering
@@ -184,8 +196,8 @@ Częstotliwość [Hz] & 261,6 & 293,7 & 329,6 & 349,2 & 391,9 & 440,0 & 493,9 & 
 \item \url{https://musescore.com/sheetmusic}
 \end{itemize}
 \section{Format MusicXML}
-\tab Format MusicXML to cyfrowy format do zapisu notacji nutowej i łatwego udostępniania zachodnich utworów muzycznych. Celem tego formatu jest stworzenie uniwersalnego nośnika do udostępniania nut. Obecnie wiele programów komputerowych wspiera otwieranie plików MusicXML. Przed MusicXML jedynym powszechnie stosowanym formatem do zapisywania notacji było MIDI, jednak ten format nie wspiera wielu cech notacji nutowej. MusicXML używa języka znaczników XML do zapisu informacji, który został wybrany ze względu na niezależność od platformy i jest świetny do reprezentowania dużej ilości strukturalnych danych co wpasowuje go idealnie do reprezentacji partytury. Dodatkowym atutem tego formatu jest fakt, że nie ma potrzeby tworzenia nowych parserów tego języka, gdyż istnieją one już od dłuższego czasu.\\
-\tab Pliki MucsicXML użyte podczas tworzenia bazy muzyki używają skompresowanego formatu .mxl, który pozwala zaoszczędzić około 20 razy więcej miejsca, przykładowo cztery strony nut w nieskompresowanym formacie .musicxml zajmują nawet 518kB pamięci, a przy użyciu skompresowanego formatu .mxl tylko 19kB co jest nawet mniejszą ilością w porównaniu do reprezentacji MIDI, która wynosi 21kB, a jednocześnie zawiera mniej informacji.
+\tab Format MusicXML to cyfrowy format do zapisu notacji nutowej i łatwego udostępniania zachodnich utworów muzycznych. Celem tego formatu jest stworzenie uniwersalnego nośnika do udostępniania nut. Obecnie wiele programów komputerowych wspiera otwieranie plików MusicXML. Przed MusicXML jedynym powszechnie stosowanym formatem do zapisywania notacji było MIDI, jednak ten format nie wspiera wielu cech notacji nutowej. MusicXML używa języka znaczników XML \cite{xml} do zapisu informacji, który został wybrany ze względu na niezależność od platformy i jest świetny do reprezentowania dużej ilości strukturalnych danych co wpasowuje go idealnie do reprezentacji partytury. Dodatkowym atutem tego formatu jest fakt, że nie ma potrzeby tworzenia nowych parserów tego języka, gdyż istnieją one już od dłuższego czasu.\\
+\tab Pliki MucsicXML użyte podczas tworzenia bazy muzyki używają skompresowanego formatu .mxl, który pozwala zaoszczędzić około 20 razy więcej miejsca, przykładowo cztery strony nut w nieskompresowanym formacie .musicxml zajmują nawet 518kB pamięci, a przy użyciu skompresowanego formatu .mxl tylko 19kB co jest nawet mniejszą ilością w porównaniu do reprezentacji MIDI, która wynosi 21kB, a jednocześnie zawiera mniej informacji. \cite{mxml}
 \subsection{Przykład pliku MusicXML}
 \begin{figure}[!htb]
 \centering
@@ -337,7 +349,7 @@ Element \textit{<type>} jest elementem trochę nadmiernym, ponieważ można wyci
 \end{lstlisting}
 Ostatecznie zamykamy wszystkie elementy i nasz utwór składający się z jednej ćwierćnuty jest kompletny.\\
 
-\tab Jednym z warunków formatu MusicXML jest wymuszona kolejność elementów w strukturze zdefiniowana przez dokument DTD.
+\tab Jednym z warunków formatu MusicXML jest wymuszona kolejność elementów w strukturze zdefiniowana przez dokument DTD. \cite{mxml}
 \section{Epoki muzyczne w bazie plików}
 \tab Początkowo w bazie plików miała znajdować się muzyka z epok od średniowiecza do XX wieku. Jednak ze względu na ograniczony i trudny dostęp do wystarczającej liczby utworów w formacie MusicXML pozostano tylko przy czterech epokach: renesans, barok, klasycyzm oraz romantyzm. Na każdą epokę w bazie przypada około 100 utworów muzycznych różnych artystów z tego każdego okresu. Oto lista artystów z każdej epoki, których utwory były wykorzystane do stworzenia bazy:
 \begin{itemize}
@@ -382,7 +394,7 @@ Ostatecznie zamykamy wszystkie elementy i nasz utwór składający się z jednej
 \subsection{Uczenie nienadzorowane}
 \tab W przeciwieństwie do uczenia nadzorowanego w uczeniu nienadzorowanym nie wiemy do jakiej klasy należą dane uczące. Dzięki takiemu podejściu jesteśmy w stanie poznać strukturę przetwarzanych danych i sklasyfikować je ze względu na podobieństwo. 
 \subsection{Uczenie przez wzmacnianie}
-\tab Uczenie przez wzmacnianie ma na celu stworzenie systemu, który poprawia własną skuteczność na podstawie interakcji ze środowiskiem. System jest nagradzany lub karany\linebreak w zależności od poprawności wyniku końcowego, w ten sposób dostarczana jest do regulatora informacja zwrotna na podstawie której do modelu wprowadzane są poprawki.
+\tab Uczenie przez wzmacnianie ma na celu stworzenie systemu, który poprawia własną skuteczność na podstawie interakcji ze środowiskiem. System jest nagradzany lub karany\linebreak w zależności od poprawności wyniku końcowego, w ten sposób dostarczana jest do regulatora informacja zwrotna na podstawie której do modelu wprowadzane są\linebreak poprawki.
 \section{Algorytmy klasyfikujące}
 \subsection{Perceptron}
 \tab Algorytm klasyfikujący perceptronu działa podobnie do komórki nerwowej, algorytm przemnaża wagi z wartościami wejściowymi i na podstawie wyników określa czy należy zaktualizować wagi czy wynik był poprawny. Wykorzystywana jest do tego funkcja skoku jednostkowego, zwana funkcją skokową Heaviside'a. Algorytm można opisać dwoma krokami:
@@ -453,15 +465,15 @@ Standaryzację kolumny można przeprowadzić wykorzystując wzór:\\
 x^{(1)}_{std} = \dfrac{x^{(i)} - \mu_x}{\sigma_x}
 \end{equation}
 \subsection{Dobór cech}
-\tab Częstym problemem jest tak zwane nadmierne dopasowanie modelu, czyli sytuacja kiedy model zbyt mocno dopasowany jest do danych uczących, co negatywnie wpływa na wyniki predykcji podczas użycia rzeczywistych zbiorów danych. Taki model cechuje duża wariancja. Przyczynami takich wyników jest zbyt duża złożoność modelu, a problem ten można rozwiązać poprzez: większą ilość danych uczących, karę za złożoność, prostszy model lub zmniejszenie wymiarowości danych.
+\tab Częstym problemem jest tak zwane nadmierne dopasowanie modelu, czyli sytuacja kiedy model zbyt mocno dopasowany jest do danych uczących, co negatywnie wpływa na wyniki predykcji podczas użycia rzeczywistych zbiorów danych. Taki model cechuje duża wariancja. Przyczynami takich wyników jest zbyt duża złożoność modelu, a problem ten można rozwiązać poprzez: większą ilość danych uczących, karę za złożoność, prostszy model lub zmniejszenie wymiarowości danych. \cite{rash}
 \chapter{Implementacja aplikacji}
 \section{Środowisko}
 \tab Aplikacja została napisana przy użycia języka programowania Python w wersji 3.6 oraz zewnętrznych bibliotek do tego języka. Poza standardowymi bibliotekami języka Python użyto:
 \begin{itemize}
-\item \textit{NumPy} - biblioteka umożliwiająca szybkie operacje na macierzach wielowymiarowych,
-\item \textit{Pandas} - dostarcza zoptymalizowane i łatwe w obsłudze struktury danych, które są kompatybilne z narzędziami biblioteki \textit{NumPy},
-\item \textit{scikit-learn} - biblioteka umożliwiająca klasyfikację obiektów na podstawie uczenia maszynowego, jest kompatybilna z narzędziami dostarczanymi przez \textit{NumPy} oraz \textit{Pandas},
-\item \textit{music21} - zestaw narzędzi do analizy różnych formatów muzycznych, między innymi MIDI oraz MusicXML, pozwala również na pisanie własnych utworów w języku Python.
+\item \textit{NumPy} - biblioteka umożliwiająca szybkie operacje na macierzach wielowymiarowych \cite{numpy},
+\item \textit{Pandas} - dostarcza zoptymalizowane i łatwe w obsłudze struktury danych, które są kompatybilne z narzędziami biblioteki \textit{NumPy} \cite{pandas},
+\item \textit{scikit-learn} - biblioteka umożliwiająca klasyfikację obiektów na podstawie uczenia maszynowego, jest kompatybilna z narzędziami dostarczanymi przez \textit{NumPy} oraz \textit{Pandas} \cite{sci},
+\item \textit{music21} - zestaw narzędzi do analizy różnych formatów muzycznych, między innymi MIDI oraz MusicXML, pozwala również na pisanie własnych utworów w języku Python. \cite{m21}
 \end{itemize}
 \section{Biblioteka music21}
 \tab Dzięki prostemu interfejsowi biblioteki \textit{music21} w bardzo łatwy sposób można odczytywać informacje z plików MusicXML.
@@ -668,17 +680,49 @@ Klasyfikuje przetworzone na format CSV pliki z pliku \textit{testowa\_baza.csv}.
 \includegraphics[scale=0.9]{wyniki_all_2.png}
 \caption{Wyniki trenowania modelu, sto trzynaście cech, powtórzenie trzecie.}
 \end{figure}
-\tab Dla porównania użyto też wszystkich stu trzynastu cech. Dokładność danych uczących wynosiła praktycznie 100\%, a testowych około 50\% widać ewidentne przetrenowanie modelu - model zbyt mocno dopasował się do danych uczących co sprawia, że nie radzi sobie z danymi testowymi. Rozpoznawalność dla poszczególnych epok jest losowa i bardzo zależy od wyboru danych do nauki modelu.
+\tab Dla porównania użyto też wszystkich stu trzynastu cech. Dokładność danych uczących wynosiła praktycznie 100\%, a testowych około 50\% widać ewidentne przetrenowanie modelu - model zbyt mocno dopasował się do danych uczących co sprawia, że nie radzi sobie z danymi testowymi. Rozpoznawalność dla poszczególnych epok jest losowa\linebreak i bardzo zależy od wyboru danych do nauki modelu.
 \section{Wnioski}
-\tab Wybór odpowiednich parametrów jest kluczowym etapem uczenia maszynowego, jak widać po wynikach użycie wszystkich dostępnych cech wcale nie daje najlepszych rezultatów, wręcz przeciwnie, tylko pogarsza wyniki, a model jest dopasowany idealnie tylko do zestawu uczącego. Sytuację tą przedstawia rysunek 6.14. Jak widać na przykładzie z rysunku 6.14 zielona linia idealnie oddziela dwie cechy i w porównaniu do czarnej lepiej radzi sobie z klasyfikacją, jednak dzieje się tak tylko dla danych uczących i dla rzeczywistych danych zielona linia będzie powodowała znacznie większy błąd klasyfikacji niż czarna linia.
+\tab Wybór odpowiednich parametrów jest kluczowym etapem uczenia maszynowego, jak widać po wynikach użycie wszystkich dostępnych cech wcale nie daje najlepszych rezultatów, wręcz przeciwnie, tylko pogarsza wyniki, a model jest dopasowany idealnie tylko do zestawu uczącego. Sytuację tą przedstawia rysunek 6.14. Jak widać na przykładzie\linebreak z rysunku 6.14 zielona linia idealnie oddziela dwie cechy i w porównaniu do czarnej lepiej radzi sobie z klasyfikacją, jednak dzieje się tak tylko dla danych uczących i dla rzeczywistych danych zielona linia będzie powodowała znacznie większy błąd klasyfikacji niż czarna linia.
 \begin{figure}[H]
 \centering
 \includegraphics[scale=0.3]{overfitting.png}
-\caption{Zielona linia pokazuje zachowanie modelu przetrenowanego, czarna model do którego dążymy.}
+\caption{Zielona linia pokazuje zachowanie modelu przetrenowanego, czarna model do którego dążymy. \cite{ovrimg}}
 \end{figure}
 \tab W przypadku użycia tylko 4 cech wskazanych przez klasę \textit{RandomForestClassifier} znacznie zmalała rozpoznawalność epoki barokowej. Z kolei użycie 13 pierwszych parametrów było najbardziej optymalnym, jednak wciąż niezadowalającym rozwiązaniem.\\
 \tab Niepowiedziane też jest, że można rozpoznawać klasyczne utwory muzyczne na tylko na podstawie wybranych w tej pracy cech. Sprawę komplikuje też fakt, że artyści nie zawsze trzymali się jednej formy, a ich utwory niekiedy bardzo zmieniały się w ciągu okresu twórczości, czasami wychodząc stylem poza swoją epokę, przykładem może być twórczość Beethoven'a, którego ciężko sklasyfikować jednoznacznie do klasycyzmu czy romantyzmu.
 \tab Praca nad aplikacją zdecydowanie była źródłem cennej wiedzy programistycznej na temat uczenia maszynowego oraz jego implementacji.
 \section{Możliwości rozwoju}
 \tab Do poprawienia skuteczności klasyfikacji na pewno trzeba przeanalizować inne parametry i znaleźć takie, które znacznie lepiej opisują daną epokę i pozwalają odróżniać ją od pozostałych. Należałoby również poszerzyć bazę danych utworów, być może wykorzystać inne algorytmy uczenia maszynowego. Zagadnienie klasyfikacji klasycznych utworów na pewno nie jest proste. Jeśli chodzi o sam interfejs aplikacji warto dodać możliwość wprowadzenia pojedynczego utworu i jego automatycznej klasyfikacji zamiast całych baz danych.
+\begin{flushleft}
+\begin{thebibliography}{99}
+
+\bibitem{mlearn} A.L.Samuel,
+\emph{Some studies in machine learning using the game of checkers},
+IBM Journal of Research and Development, Volume 3 Issue 3, 1959, s. 210-229
+\bibitem{mxml} MusicXML, dostęp: grudzień 2019, https://www.musicxml.com/
+\bibitem{m21} music21, dostęp: grudzień  2019, https://web.mit.edu/music21/
+\bibitem{oldest} M. Levy, The Oldest Written Musical Notation, The Oldest Written Melody \& The Oldest Complete Written Melody So Far Discovered In History, dostęp: grudzień 2019, http://www.ancientlyre.com/
+\bibitem{sred} I. Bieńkowska, Średniowiecze, Muzykoteka Szkolna, dostęp: grudzień  2019, http://www.muzykotekaszkolna.pl/wiedza/epoki/sredniowiecze/
+\bibitem{neum} A. Leszczyńska, Jak zapisywano muzykę, Muzykoteka Szkolna, dostęp: grudzień  2019, http://www.muzykotekaszkolna.pl/wiecej-o-muzyce/jak-zapisywano-muzyke
+\bibitem{ren} A. Leszczyńska, Renesans, Muzykoteka Szkolna, dostęp: grudzień  2019, http://www.muzykotekaszkolna.pl/wiedza/epoki/renesans/
+\bibitem{ren2} Renaissance Music, Music Theory Academy, dostęp: grudzień  2019,  https://www.musictheoryacademy.com/periods-of-music/renaissance-music/
+\bibitem{bar} S. Paczkowski, Barok, Muzykoteka Szkolna, dostęp: grudzień 2019, http://www.muzykotekaszkolna.pl/wiedza/epoki/barok/
+\bibitem{clas} A. Markuszewska, Klasycyzm, Muzykoteka Szkolna, dostęp: grudzień 2019, http://www.muzykotekaszkolna.pl/wiedza/epoki/klasycyzm/
+\bibitem{rom} Romantic Period Music, Music Theory Academy, dostęp: grudzień 2019, 
+https://www.musictheoryacademy.com/periods-of-music/romantic-period-music/
+\bibitem{xx} I. Lindstedt, XX wiek, Muzykoteka Szkolna, dostęp: grudzień 2019, http://www.muzykotekaszkolna.pl/wiedza/epoki/xx-wiek/
+\bibitem{wys} F. Wesołowski, \emph{Zasady muzyki}, Warszawa: PWM, 1989, s. 15-17, ISBN 83-224-0250-3 
+\bibitem{key} F. Wesołowski, \emph{Zasady muzyki}, PWM, 1989, s. 18-20, ISBN 83-224-0250-3 
+\bibitem{wart} F. Wesołowski, \emph{Zasady muzyki}, PWM, 1989, s. 23-27, ISBN 83-224-0250-3 
+\bibitem{slow} J. Habela, \emph{Słowniczek muzyczny},
+ Kraków: PWM, 1998, ISBN 83-224-0336-4
+\bibitem{tab} Tabela częstotliwości tonów, dostęp: grudzień 2019, http://www.fizykon.org/muzyka/muzyka\_tabela\_czestotliwosci\_tonow.htm
+\bibitem{xml} XML, dostęp: grudzień 2019, https://www.w3.org/XML/
+\bibitem{rash} S. Raschka, tłum: K. Sawka, \emph{Python Uczenie maszynowe}, Helion, 2016, ISBN 978-83-283-3613-1
+\bibitem{numpy} NumPy, dostęp: grudzień 2019, https://numpy.org/
+\bibitem{pandas} Pandas, dostęp: grudzień 2019, https://pandas.pydata.org/
+\bibitem{sci} scikit-learn, dostęp: grudzień 2019, https://scikit-learn.org/stable/
+\bibitem{ovrimg} Przetrenowanie modelu, https://en.wikipedia.org/wiki/Overfitting\#/media/File:Overfitting.svg
+\end{thebibliography}
+\end{flushleft}
 \end{document}
