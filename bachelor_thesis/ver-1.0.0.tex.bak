@@ -1,7 +1,7 @@
 \documentclass[printmode, eng, openany]{mgr}
-\usepackage{polski}
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
 
 \usepackage{graphicx}
 \usepackage{subfigure}
@@ -47,6 +47,7 @@
 \newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
 
 \linespread{1.3}
+
 \begin{document}
 \maketitle
 \blankpage
