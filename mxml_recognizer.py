@@ -2,21 +2,21 @@ import logging
 import json
 import os
 from collections import Counter
+from joblib import dump, load
 
 import fractions
 
 import pandas as pd
-
-from utils.create_data_from_mxml import DataConverter
+import numpy as np
+from utils.data_parser import DataParser
 from utils.parser import cmd_parser
-from utils.model import train_model
+from utils.model import train_model, classify
 
 
 logging.basicConfig(format="[%(asctime)s.%(msecs)03d] %(levelname)s: %(message)s", 
                     datefmt="%Y-%m-%d %H:%M:%S", level=logging.INFO)
 
 
-    
 if __name__ == "__main__":
     args = cmd_parser()
     if args.csv_path and args.mxml_files:
@@ -27,8 +27,8 @@ if __name__ == "__main__":
         for filename in input_files:
             if os.path.isdir(input_path):
                 path = os.path.join(input_path, filename)
-                streams = DataConverter.extract_data_from_mxml(input_path=path)
-                data_converter = DataConverter()
+                streams = DataParser.extract_data_from_mxml(input_path=path)
+                data_converter = DataParser()
                 data_converter.create_dictionary(streams=streams)
                 flat_dict = data_converter.flatten_dictionaries()
                 df = df.append(
@@ -37,5 +37,15 @@ if __name__ == "__main__":
                 )
         df.to_csv(csv_path, sep=";")
     if args.train:
-        train_model(path=args.csv_path, test_size=args.test_size, eta0=args.eta,
-                    max_iter=args.max_iter, random_state=args.random_state)
+        model = train_model(path=args.csv_path, test_size=args.test_size, kernel=args.kernel,
+                                gamma=args.gamma, C=args.C, random_state=args.random_state)
+
+    if args.save_model:
+        dump(model, args.save_model)
+        
+    if args.classify:
+        if args.train:
+            test_model = model
+        else:
+            test_model = load(args.classify)
+        classify(model=test_model, data=args.classify)

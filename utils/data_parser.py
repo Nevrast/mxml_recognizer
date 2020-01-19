@@ -11,7 +11,7 @@ from utils.stream_analyzer import StreamAnalyzer
 logger = logging.getLogger(__name__)
 
 
-class DataConverter:
+class DataParser:
     """
     Class that takes mxml files and creates database in form of .csv file.
     """

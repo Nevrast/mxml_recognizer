@@ -1,0 +1,54 @@
+\contentsline {chapter}{\numberline {1}Wst\IeC {\k e}p}{7}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}Zakres pracy}{7}{section.1.1}% 
+\contentsline {section}{\numberline {1.2}Zawarto\IeC {\'s}\IeC {\'c} pracy}{8}{section.1.2}% 
+\contentsline {chapter}{\numberline {2}Muzyka klasyczna}{9}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Epoki w muzyce klasycznej}{9}{section.2.1}% 
+\contentsline {subsection}{\numberline {2.1.1}\IeC {\'S}redniowiecze}{9}{subsection.2.1.1}% 
+\contentsline {subsection}{\numberline {2.1.2}Renesans}{10}{subsection.2.1.2}% 
+\contentsline {subsection}{\numberline {2.1.3}Barok}{10}{subsection.2.1.3}% 
+\contentsline {subsection}{\numberline {2.1.4}Klasycyzm}{10}{subsection.2.1.4}% 
+\contentsline {subsection}{\numberline {2.1.5}Romantyzm}{11}{subsection.2.1.5}% 
+\contentsline {subsection}{\numberline {2.1.6}XX wiek}{11}{subsection.2.1.6}% 
+\contentsline {section}{\numberline {2.2}Zapis nutowy}{11}{section.2.2}% 
+\contentsline {subsection}{\numberline {2.2.1}Wysoko\IeC {\'s}\IeC {\'c} d\IeC {\'z}wi\IeC {\k e}ku}{12}{subsection.2.2.1}% 
+\contentsline {subsubsection}{Klucz}{12}{section*.4}% 
+\contentsline {subsubsection}{Krzy\IeC {\.z}yk}{12}{section*.5}% 
+\contentsline {subsubsection}{Bemol}{12}{section*.6}% 
+\contentsline {subsubsection}{Kasownik}{13}{section*.7}% 
+\contentsline {subsection}{\numberline {2.2.2}Warto\IeC {\'s}ci nut}{13}{subsection.2.2.2}% 
+\contentsline {subsubsection}{\IeC {\L }uk}{14}{section*.8}% 
+\contentsline {subsubsection}{Kropka}{14}{section*.9}% 
+\contentsline {chapter}{\numberline {3}Baza plik\IeC {\'o}w muzycznych MusicXML}{15}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Format MusicXML}{15}{section.3.1}% 
+\contentsline {subsection}{\numberline {3.1.1}Przyk\IeC {\l }ad pliku MusicXML}{16}{subsection.3.1.1}% 
+\contentsline {section}{\numberline {3.2}Epoki muzyczne w bazie plik\IeC {\'o}w}{19}{section.3.2}% 
+\contentsline {chapter}{\numberline {4}Uczenie maszynowe}{21}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Rodzaje uczenia maszynowego}{21}{section.4.1}% 
+\contentsline {subsection}{\numberline {4.1.1}Uczenie nadzorowane}{21}{subsection.4.1.1}% 
+\contentsline {subsection}{\numberline {4.1.2}Uczenie nienadzorowane}{21}{subsection.4.1.2}% 
+\contentsline {subsection}{\numberline {4.1.3}Uczenie przez wzmacnianie}{21}{subsection.4.1.3}% 
+\contentsline {section}{\numberline {4.2}Algorytmy klasyfikuj\IeC {\k a}ce}{22}{section.4.2}% 
+\contentsline {subsection}{\numberline {4.2.1}Perceptron}{22}{subsection.4.2.1}% 
+\contentsline {subsection}{\numberline {4.2.2}Regresja logistyczna}{22}{subsection.4.2.2}% 
+\contentsline {subsection}{\numberline {4.2.3}Maszyny wektor\IeC {\'o}w no\IeC {\'s}nych}{22}{subsection.4.2.3}% 
+\contentsline {section}{\numberline {4.3}Przetwarzanie danych}{23}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}Brakuj\IeC {\k a}ce dane}{23}{subsection.4.3.1}% 
+\contentsline {subsection}{\numberline {4.3.2}Cechy kategoryzuj\IeC {\k a}ce}{23}{subsection.4.3.2}% 
+\contentsline {subsection}{\numberline {4.3.3}Kodowanie etykiet klas}{24}{subsection.4.3.3}% 
+\contentsline {subsection}{\numberline {4.3.4}Dane ucz\IeC {\k a}ce i dane testowe}{24}{subsection.4.3.4}% 
+\contentsline {subsection}{\numberline {4.3.5}Skalowanie cech}{24}{subsection.4.3.5}% 
+\contentsline {subsection}{\numberline {4.3.6}Dob\IeC {\'o}r cech}{25}{subsection.4.3.6}% 
+\contentsline {chapter}{\numberline {5}Implementacja aplikacji}{27}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}\IeC {\'S}rodowisko}{27}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}Biblioteka music21}{27}{section.5.2}% 
+\contentsline {subsection}{\numberline {5.2.1}Parametryzacja plik\IeC {\'o}w}{28}{subsection.5.2.1}% 
+\contentsline {subsection}{\numberline {5.2.2}Implementacja parametryzacji plik\IeC {\'o}w}{28}{subsection.5.2.2}% 
+\contentsline {section}{\numberline {5.3}Tworzenie DataFrame oraz bazy CSV}{29}{section.5.3}% 
+\contentsline {section}{\numberline {5.4}Wybieranie parametr\IeC {\'o}w}{30}{section.5.4}% 
+\contentsline {section}{\numberline {5.5}Trenowanie modelu}{31}{section.5.5}% 
+\contentsline {section}{\numberline {5.6}Interfejs wiersza polece\IeC {\'n}}{32}{section.5.6}% 
+\contentsline {subsection}{\numberline {5.6.1}Przyk\IeC {\l }ady u\IeC {\.z}ycia}{33}{subsection.5.6.1}% 
+\contentsline {chapter}{\numberline {6}Podsumowanie}{35}{chapter.6}% 
+\contentsline {section}{\numberline {6.1}Wyniki}{35}{section.6.1}% 
+\contentsline {section}{\numberline {6.2}Wnioski}{39}{section.6.2}% 
+\contentsline {section}{\numberline {6.3}Mo\IeC {\.z}liwo\IeC {\'s}ci rozwoju}{40}{section.6.3}% 
